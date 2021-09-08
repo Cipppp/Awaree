@@ -1,5 +1,6 @@
+import { ReactComponent as Settings } from '../../assets/icons8-settings.svg';
 import React, { useState } from 'react';
-import { Link, Redirect, useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 function Navbar() {
@@ -33,12 +34,18 @@ function Navbar() {
                     </h1>
                 </Link>
                 {currentUser ? (
-                    <button
-                        onClick={handleLogout}
-                        className="text-gray-300 btn border-gray-300 border-2 hover:bg-gray-300 hover:text-black focus:outline-none"
+                    // <button
+                    //     onClick={handleLogout}
+                    //     className="text-gray-300 btn border-gray-300 border-2 hover:bg-gray-300 hover:text-black focus:outline-none"
+                    // >
+                    //     Log out
+                    // </button>
+                    <Link
+                        to="/update-profile"
+                        className="btn cursor-pointer w-auto h-auto text-snow"
                     >
-                        Log out
-                    </button>
+                        <Settings className="h-14" />
+                    </Link>
                 ) : isOnPage ? null : (
                     <button
                         className="text-gray-300 btn border-gray-300 border-2 hover:bg-gray-300 hover:text-black focus:outline-none"

@@ -1,34 +1,35 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { Link, useHistory } from 'react-router-dom';
+import firebase from '../../firebase';
 
 function Status() {
-    const [error, setError] = useState('');
-    const { currentUser, logout } = useAuth();
-    const history = useHistory();
+    // const { currentUser } = useAuth();
+    // const [answers, setAnswers] = useState([]);
+    // const [loading, setLoading] = useState(false);
 
-    async function handleLogout() {
-        setError('');
-        try {
-            await logout();
-            history.pushState('/login');
-        } catch {
-            setError('Failed to log out');
-        }
-    }
+    // const ref = firebase.firestore().collection('answers');
+
+    // function getAnswers() {
+    //     setLoading(true);
+    //     ref.onSnapshot((querySnapshot))
+    // }
+
+    // if (loading) {
+    //     return <h1>Loading...</h1>;
+    // }
 
     return (
         <>
             <div className="grid grid-cols-2">
-                <div className="h-screen flex justify-center items-center bg-login">
-                    {error && <p>{error}</p>}
-                    Welcome back {currentUser.email}
-                    <Link to="/update-profile" className="btn">
-                        Update profile
-                    </Link>
-                </div>
-                <div className="h-screen flex justify-center items-center bg-login">
-                    <button onClick={handleLogout}>Log Out</button>
+                <div className="h-screen flex justify-center items-center bg-login col-span-2">
+                    {/* {answers.map((answer) => (
+                        <div key={answer.id}>
+                            <h2>{answer.profile}</h2>
+                            <h2>{answer.series}</h2>
+                            <h2>{answer.group}</h2>
+                            <h2>{answer.volunteer_activities}</h2>
+                        </div>
+                    ))} */}
                 </div>
             </div>
         </>

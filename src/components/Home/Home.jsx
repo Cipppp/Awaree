@@ -4,7 +4,6 @@ import readingImg from '../../assets/reading_time.png';
 import arrowImg from '../../assets/arrow.png';
 import content from '../../content';
 import fastImg from '../../assets/fast.png';
-import { Link } from 'react-router-dom';
 
 function Home() {
     return (

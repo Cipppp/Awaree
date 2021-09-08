@@ -1,7 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import loginImg from '../../assets/login.png';
 import { Link, useHistory } from 'react-router-dom';
 
 function UpdateProfile() {
@@ -45,71 +43,59 @@ function UpdateProfile() {
 
     return (
         <div className="grid md:grid-cols-2 items-center">
-            <div className="left-side h-screen flex justify-center items-center">
-                <div>
-                    <LazyLoadImage src={loginImg} />
-                </div>
-            </div>
+            <div className="right-side bg-login h-screen flex justify-center items-center col-span-2">
+                <div className="loginContainer font-josefin p-8 text-2xl text-jet">
+                    <h1 className="">Update Profile</h1>
+                    {error && (
+                        <p className="text-white font-josefin">{error}</p>
+                    )}
+                    <form onSubmit={handleSubmit} action="submit">
+                        {/* username  */}
+                        <h1 className="">Email</h1>
+                        <input
+                            type="text"
+                            autoFocus
+                            required
+                            defaultValue={currentUser.email}
+                            className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
+                            ref={emailRef}
+                        />
+                        {/* password  */}
+                        <h1>Password</h1>
+                        <input
+                            type="password"
+                            placeholder="Leave blank to keep the same"
+                            className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
+                            ref={passwordRef}
+                        />
+                        <h1>Password confirmation</h1>
+                        <input
+                            type="password"
+                            placeholder="Leave blank to keep the same"
+                            className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
+                            ref={passwordConfirmRef}
+                        />
 
-            <div className="right-side bg-login h-full flex justify-center items-center">
-                <div className="flex w-full justify-center">
-                    <div className="login w-7/12 mt-20">
-                        <div className="loginContainer font-josefin p-8 text-2xl text-jet">
-                            <h1 className="">Update Profile</h1>
-                            {error && (
-                                <p className="text-white font-josefin">
-                                    {error}
+                        {/* button  */}
+                        <div className="btnContainer grid grid-rows-2 place-items-center">
+                            <>
+                                <button
+                                    disabled={loading}
+                                    className="btn-auth hover:bg-jet hover:text-link"
+                                >
+                                    Update
+                                </button>
+                                <p>
+                                    <Link
+                                        to="/status"
+                                        className="pl-2 cursor-pointer text-snow"
+                                    >
+                                        Cancel
+                                    </Link>
                                 </p>
-                            )}
-                            <form onSubmit={handleSubmit} action="submit">
-                                {/* username  */}
-                                <h1 className="">Email</h1>
-                                <input
-                                    type="text"
-                                    autoFocus
-                                    required
-                                    defaultValue={currentUser.email}
-                                    className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
-                                    ref={emailRef}
-                                />
-                                {/* password  */}
-                                <h1>Password</h1>
-                                <input
-                                    type="password"
-                                    placeholder="Leave blank to keep the same"
-                                    className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
-                                    ref={passwordRef}
-                                />
-                                <h1>Password confirmation</h1>
-                                <input
-                                    type="password"
-                                    placeholder="Leave blank to keep the same"
-                                    className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
-                                    ref={passwordConfirmRef}
-                                />
-
-                                {/* button  */}
-                                <div className="btnContainer grid grid-rows-2 place-items-center">
-                                    <>
-                                        <button
-                                            disabled={loading}
-                                            className="btn-auth hover:bg-jet hover:text-link"
-                                        >
-                                            Update
-                                        </button>
-                                        <p>
-                                            <Link
-                                                to="/status"
-                                                className="pl-2 cursor-pointer text-snow"
-                                            >
-                                                Cancel
-                                            </Link>
-                                        </p>
-                                    </>
-                                </div>
-                            </form>
+                            </>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
     Home,
     Navbar,
@@ -18,7 +18,6 @@ function App() {
     return (
         <Router>
             <AuthProvider>
-                {/* <Navbar user={user} handleLogout={handleLogout} /> */}
                 <Navbar />
                 <Switch>
                     <Route path="/" exact component={Home} />
