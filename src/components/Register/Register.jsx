@@ -50,7 +50,7 @@ function Register() {
                             )}
                             <form onSubmit={handleSubmit} action="submit">
                                 {/* username  */}
-                                <h1 className="">Username</h1>
+                                <h1 className="">Email</h1>
                                 <input
                                     type="text"
                                     autoFocus
@@ -79,14 +79,14 @@ function Register() {
                                     <>
                                         <button
                                             disabled={loading}
-                                            className="btn-auth hover:bg-jet hover:text-link"
+                                            className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
                                         >
                                             Register
                                         </button>
                                         <p>
                                             Already have an account?
                                             <Link
-                                                to="/register"
+                                                to="/login"
                                                 className="pl-2 cursor-pointer text-snow"
                                             >
                                                 Log In

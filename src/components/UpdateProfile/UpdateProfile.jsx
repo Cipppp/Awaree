@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, Redirect } from 'react-router-dom';
 
 function UpdateProfile() {
     const emailRef = useRef();
@@ -81,7 +81,7 @@ function UpdateProfile() {
                             <>
                                 <button
                                     disabled={loading}
-                                    className="btn-auth hover:bg-jet hover:text-link"
+                                    className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
                                 >
                                     Update
                                 </button>

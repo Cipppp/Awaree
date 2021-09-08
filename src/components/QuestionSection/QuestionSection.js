@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import firebaseAuth from '../../firebase';
 import scrollTo from 'gatsby-plugin-smoothscroll';
-import { Link } from 'react-router-dom';
 
 const QuestionSection = ({ rightSection, text, id, done }) => {
     const [answer, setAnswer] = useState('');
+    const [value, setValue] = useState([]);
 
     const handleOnChange = (e) => {
         setAnswer(e.target.value);
@@ -16,9 +16,9 @@ const QuestionSection = ({ rightSection, text, id, done }) => {
         const item = {
             answer,
         };
-
         answerRef.push(item);
     };
+
     return (
         <>
             <div className="grid grid-cols-2" id={`quiz_${id}`}>
@@ -36,14 +36,12 @@ const QuestionSection = ({ rightSection, text, id, done }) => {
                         />
 
                         {done ? (
-                            <Link to="/status">
-                                <button
-                                    className="btn-auth hover:bg-green-300 hover:text-white focus:outline-none"
-                                    onClick={createAnswer}
-                                >
-                                    Done
-                                </button>
-                            </Link>
+                            <button
+                                className="btn-auth hover:bg-green-300 hover:text-white focus:outline-none"
+                                onClick={createAnswer}
+                            >
+                                Done
+                            </button>
                         ) : (
                             <button
                                 className="btn-auth hover:bg-jet hover:text-link focus:outline-none"

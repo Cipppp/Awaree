@@ -1,29 +1,12 @@
-import { ReactComponent as Settings } from '../../assets/icons8-settings.svg';
 import React, { useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 function Navbar() {
     const [error, setError] = useState('');
     const { currentUser, logout } = useAuth();
     const history = useHistory();
-    const location = useLocation();
     const isOnPage = history.location.pathname === '/login';
-
-    async function handleLogout() {
-        setError('');
-        try {
-            await logout();
-            history.pushState('/login');
-        } catch {
-            setError('Failed to log out.');
-        }
-    }
-
-    const routeChange = () => {
-        let path = '/login';
-        history.push(path);
-    };
 
     return (
         <>
@@ -34,25 +17,19 @@ function Navbar() {
                     </h1>
                 </Link>
                 {currentUser ? (
-                    // <button
-                    //     onClick={handleLogout}
-                    //     className="text-gray-300 btn border-gray-300 border-2 hover:bg-gray-300 hover:text-black focus:outline-none"
-                    // >
-                    //     Log out
-                    // </button>
                     <Link
-                        to="/update-profile"
-                        className="btn cursor-pointer w-auto h-auto text-snow"
+                        className="text-gray-300 p-4 mr-10 text-xl font-josefin font-bold tracking-wider focus:outline-none"
+                        to="/settings"
                     >
-                        <Settings className="h-14" />
+                        Settings
                     </Link>
                 ) : isOnPage ? null : (
-                    <button
-                        className="text-gray-300 btn border-gray-300 border-2 hover:bg-gray-300 hover:text-black focus:outline-none"
-                        onClick={routeChange}
+                    <Link
+                        className="text-gray-300 p-4 mr-10 text-2xl font-josefin font-bold tracking-wider focus:outline-none"
+                        to="/login"
                     >
                         Login
-                    </button>
+                    </Link>
                 )}
             </div>
         </>

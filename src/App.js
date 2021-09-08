@@ -8,6 +8,7 @@ import {
     Intro,
     ForgotPassword,
     UpdateProfile,
+    Settings,
 } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
@@ -21,6 +22,7 @@ function App() {
                 <Navbar />
                 <Switch>
                     <Route path="/" exact component={Home} />
+                    <PrivateRoute path="/settings" component={Settings} />
                     <Route path="/forgot-password" component={ForgotPassword} />
                     <Route path="/update-profile" component={UpdateProfile} />
                     <Route path="/register" component={Register} />
