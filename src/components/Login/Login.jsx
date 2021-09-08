@@ -31,7 +31,7 @@ function Login({
                                 type="text"
                                 autoFocus
                                 required
-                                className="bg-orange w-full p-3 focus:outline-none focus:shadow-outline rounded-full "
+                                className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
@@ -41,7 +41,7 @@ function Login({
                             <input
                                 type="password"
                                 required
-                                className="w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
+                                className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Home, Navbar, Login, Register, Status } from './components';
+import { Home, Navbar, Login, Register, Status, Intro } from './components';
 import {
     BrowserRouter as Router,
     Switch,
@@ -113,8 +113,9 @@ function App() {
                 />
 
                 <Route path="/status">
-                    <Status />
+                    {user ? <Status /> : <Redirect to="/login" />}
                 </Route>
+                <Route path="/intro" component={Intro} />
                 <Route path="/" component={Home} />
             </Switch>
         </Router>
