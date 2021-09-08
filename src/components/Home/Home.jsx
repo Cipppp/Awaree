@@ -4,6 +4,7 @@ import readingImg from '../../assets/reading_time.png';
 import arrowImg from '../../assets/arrow.png';
 import content from '../../content';
 import fastImg from '../../assets/fast.png';
+import { Link } from 'react-router-dom';
 
 function Home() {
     return (
@@ -20,18 +21,17 @@ function Home() {
                 </div>
 
                 <div className="arrow">
-                    <a href="#">
+                    <a href="#slide_section">
                         <LazyLoadImage src={arrowImg} />
                     </a>
                 </div>
             </div>
 
-            <div className="grid grid-rows-3 h-screen ">
+            <div className="grid grid-rows-3 h-screen" id="slide_section">
                 <div>
                     <svg
                         id="visual"
                         viewBox="0 0 900 200"
-                        // height="200"
                         version="1.1"
                         className="w-full"
                     >

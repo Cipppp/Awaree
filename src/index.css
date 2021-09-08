@@ -2,3 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn {
+    @apply rounded-full p-4 mr-10 uppercase text-xl font-josefin font-bold cursor-pointer tracking-wider transition ease-out duration-300;
+}

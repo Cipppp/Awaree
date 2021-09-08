@@ -1,15 +1,22 @@
 module.exports = {
-    purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-    darkMode: 'media', // or false or 'class'
+    future: {
+        // removeDeprecatedGapUtilities: true,
+        // purgeLayersByDefault: true,
+    },
+    purge: [],
     theme: {
         extend: {
             fontFamily: {
                 josefin: ['"Josefin Sans"'],
             },
+            colors: {
+                login: '#F29B88',
+                snow: '#FCF7F8',
+                jet: '#353535',
+                form: '#E2A497',
+            },
         },
     },
-    variants: {
-        extend: {},
-    },
+    variants: {},
     plugins: [],
 };

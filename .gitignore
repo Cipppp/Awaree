@@ -25,6 +25,7 @@ app.config
 .env
 *.json
 *.pickle
+firebase.js
 
 # Build artifacts
 *.pyc
