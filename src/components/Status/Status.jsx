@@ -1,7 +1,7 @@
 import React from 'react';
 
-function Hero() {
+function Status() {
     return <div>Hello there</div>;
 }
 
-export default Hero;
+export default Status;

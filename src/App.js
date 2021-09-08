@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Home, Navbar, Login, Register, Hero } from './components';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Home, Navbar, Login, Register, Status } from './components';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+} from 'react-router-dom';
 import './App.css';
 import firebaseAuth from './firebase';
 
@@ -81,26 +86,34 @@ function App() {
 
     return (
         <Router>
-            <Navbar />
+            <Navbar user={user} handleLogout={handleLogout} />
             <Switch>
                 <Route path="/register" component={Register} />
-                <Route path="/login">
-                    {user ? (
-                        <Hero handleLogout={handleLogout} />
-                    ) : (
-                        <Login
-                            email={email}
-                            setEmail={setEmail}
-                            password={password}
-                            setPassword={setPassword}
-                            handleLogin={handleLogin}
-                            handleSignup={handleSignup}
-                            hasAccount={hasAccount}
-                            setHasAccount={setHasAccount}
-                            emailError={emailError}
-                            passwordError={passwordError}
-                        />
-                    )}
+
+                <Route
+                    path="/login"
+                    render={() =>
+                        !user ? (
+                            <Login
+                                email={email}
+                                setEmail={setEmail}
+                                password={password}
+                                setPassword={setPassword}
+                                handleLogin={handleLogin}
+                                handleSignup={handleSignup}
+                                hasAccount={hasAccount}
+                                setHasAccount={setHasAccount}
+                                emailError={emailError}
+                                passwordError={passwordError}
+                            />
+                        ) : (
+                            <Redirect to="/status" />
+                        )
+                    }
+                />
+
+                <Route path="/status">
+                    <Status />
                 </Route>
                 <Route path="/" component={Home} />
             </Switch>

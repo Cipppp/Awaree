@@ -6,3 +6,7 @@
 .btn {
     @apply rounded-full p-4 mr-10 uppercase text-xl font-josefin font-bold cursor-pointer tracking-wider transition ease-out duration-300;
 }
+
+.btn-auth {
+    @apply rounded-full p-4 mt-4 uppercase text-xl font-josefin font-bold tracking-wider transition ease-out duration-300 border-jet border-solid border-4;
+}

@@ -14,6 +14,7 @@ module.exports = {
                 snow: '#FCF7F8',
                 jet: '#353535',
                 form: '#E2A497',
+                link: '#F5796D',
             },
         },
     },

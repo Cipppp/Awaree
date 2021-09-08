@@ -46,10 +46,13 @@ function Login({
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                             <p className="errorMsg">{passwordError}</p>
-                            <div className="btnContainer">
+                            <div className="btnContainer grid grid-rows-2 place-items-center">
                                 {hasAccount ? (
                                     <>
-                                        <button onClick={handleLogin}>
+                                        <button
+                                            className="btn-auth hover:bg-jet hover:text-link"
+                                            onClick={handleLogin}
+                                        >
                                             Login
                                         </button>
                                         <p>
@@ -58,7 +61,7 @@ function Login({
                                                 onClick={() =>
                                                     setHasAccount(!hasAccount)
                                                 }
-                                                className="pl-2 cursor-pointer"
+                                                className="pl-2 cursor-pointer text-snow"
                                             >
                                                 Register
                                             </span>
@@ -66,7 +69,10 @@ function Login({
                                     </>
                                 ) : (
                                     <>
-                                        <button onClick={handleSignup}>
+                                        <button
+                                            className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
+                                            onClick={handleSignup}
+                                        >
                                             Register
                                         </button>
                                         <p>
@@ -75,7 +81,7 @@ function Login({
                                                 onClick={() =>
                                                     setHasAccount(!hasAccount)
                                                 }
-                                                className="pl-2 cursor-pointer"
+                                                className="pl-2 cursor-pointer text-snow focus:outline-none"
                                             >
                                                 Login
                                             </span>

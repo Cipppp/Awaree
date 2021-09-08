@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
-function Navbar() {
+function Navbar({ user, handleLogout }) {
     return (
         <div className="flex items-center justify-between mx-auto fixed bg-black w-full">
             <Link to="/">
@@ -10,12 +10,19 @@ function Navbar() {
                 </h1>
             </Link>
 
-            <Link
-                to="/login"
-                className="text-gray-300 btn border-gray-300 border-2 hover:bg-gray-300 hover:text-black"
-            >
-                Login
-            </Link>
+            {!user ? (
+                <button className="text-gray-300 btn border-gray-300 border-2 hover:bg-gray-300 hover:text-black focus:outline-none">
+                    <Link to="/login">Login</Link>
+                </button>
+            ) : (
+                <button
+                    className="text-gray-300 btn border-gray-300 border-2 hover:bg-gray-300 hover:text-black focus:outline-none"
+                    onClick={handleLogout}
+                >
+                    <Link to="/">Logout</Link>
+                    <Redirect to="/" />
+                </button>
+            )}
         </div>
     );
 }
