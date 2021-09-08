@@ -5,3 +5,5 @@ export { default as Register } from './Register/Register';
 export { default as Status } from './Status/Status';
 export { default as Intro } from './Intro/Intro';
 export { default as QuestionSection } from './QuestionSection/QuestionSection';
+export { default as ForgotPassword } from './ForgotPassword/ForgotPassword';
+export { default as UpdateProfile } from './UpdateProfile/UpdateProfile';

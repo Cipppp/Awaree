@@ -4,24 +4,43 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import loginImg from '../../assets/login.png';
 import { Link, useHistory } from 'react-router-dom';
 
-function Login() {
+function UpdateProfile() {
     const emailRef = useRef();
     const passwordRef = useRef();
-    const { login } = useAuth();
+    const passwordConfirmRef = useRef();
+    const { currentUser, updatePassword, updateEmail } = useAuth();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
+        if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+            return setError('Password do not match');
+        }
 
-        try {
-            setError('');
-            setLoading(true);
-            await login(emailRef.current.value, passwordRef.current.value);
-            history.push('/status');
-        } catch {}
-        setLoading(false);
+        const promises = [];
+        setLoading(true);
+        setError('');
+
+        if (emailRef.current.value !== currentUser.email) {
+            promises.push(updateEmail(emailRef.current.value));
+        }
+
+        if (passwordRef.current.value) {
+            promises.push(updatePassword(passwordRef.current.value));
+        }
+
+        Promise.all(promises)
+            .then(() => {
+                history('/status');
+            })
+            .catch(() => {
+                setError('Failed to update account');
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     }
 
     return (
@@ -31,10 +50,12 @@ function Login() {
                     <LazyLoadImage src={loginImg} />
                 </div>
             </div>
+
             <div className="right-side bg-login h-full flex justify-center items-center">
                 <div className="flex w-full justify-center">
                     <div className="login w-7/12 mt-20">
                         <div className="loginContainer font-josefin p-8 text-2xl text-jet">
+                            <h1 className="">Update Profile</h1>
                             {error && (
                                 <p className="text-white font-josefin">
                                     {error}
@@ -42,11 +63,12 @@ function Login() {
                             )}
                             <form onSubmit={handleSubmit} action="submit">
                                 {/* username  */}
-                                <h1 className="">Username</h1>
+                                <h1 className="">Email</h1>
                                 <input
                                     type="text"
                                     autoFocus
                                     required
+                                    defaultValue={currentUser.email}
                                     className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
                                     ref={emailRef}
                                 />
@@ -54,9 +76,16 @@ function Login() {
                                 <h1>Password</h1>
                                 <input
                                     type="password"
-                                    required
+                                    placeholder="Leave blank to keep the same"
                                     className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
                                     ref={passwordRef}
+                                />
+                                <h1>Password confirmation</h1>
+                                <input
+                                    type="password"
+                                    placeholder="Leave blank to keep the same"
+                                    className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
+                                    ref={passwordConfirmRef}
                                 />
 
                                 {/* button  */}
@@ -66,26 +95,19 @@ function Login() {
                                             disabled={loading}
                                             className="btn-auth hover:bg-jet hover:text-link"
                                         >
-                                            Log In
+                                            Update
                                         </button>
                                         <p>
-                                            Don't have an account?
                                             <Link
-                                                to="/register"
+                                                to="/status"
                                                 className="pl-2 cursor-pointer text-snow"
                                             >
-                                                Register
+                                                Cancel
                                             </Link>
                                         </p>
                                     </>
                                 </div>
                             </form>
-
-                            <div>
-                                <Link to="/forgot-password">
-                                    Forgot password?
-                                </Link>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -94,4 +116,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default UpdateProfile;

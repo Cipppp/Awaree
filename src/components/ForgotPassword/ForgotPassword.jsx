@@ -2,25 +2,27 @@ import React, { useState, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import loginImg from '../../assets/login.png';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-function Login() {
+function ForgotPassword() {
     const emailRef = useRef();
-    const passwordRef = useRef();
-    const { login } = useAuth();
+    const { resetPassword } = useAuth();
     const [error, setError] = useState('');
+    const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
-    const history = useHistory();
 
     async function handleSubmit(e) {
         e.preventDefault();
 
         try {
             setError('');
+            setMessage('');
             setLoading(true);
-            await login(emailRef.current.value, passwordRef.current.value);
-            history.push('/status');
-        } catch {}
+            await resetPassword(emailRef.current.value);
+            setMessage('Check your inbox for further instructions.');
+        } catch {
+            setError('Failed to reset passowrd.');
+        }
         setLoading(false);
     }
 
@@ -31,18 +33,25 @@ function Login() {
                     <LazyLoadImage src={loginImg} />
                 </div>
             </div>
+
             <div className="right-side bg-login h-full flex justify-center items-center">
                 <div className="flex w-full justify-center">
                     <div className="login w-7/12 mt-20">
                         <div className="loginContainer font-josefin p-8 text-2xl text-jet">
+                            <h1 className="">Password Reset</h1>
                             {error && (
                                 <p className="text-white font-josefin">
                                     {error}
                                 </p>
                             )}
+                            {message && (
+                                <p className="text-green-300 font-josefin">
+                                    {message}
+                                </p>
+                            )}
                             <form onSubmit={handleSubmit} action="submit">
                                 {/* username  */}
-                                <h1 className="">Username</h1>
+                                <h1 className="">Email</h1>
                                 <input
                                     type="text"
                                     autoFocus
@@ -51,30 +60,21 @@ function Login() {
                                     ref={emailRef}
                                 />
                                 {/* password  */}
-                                <h1>Password</h1>
-                                <input
-                                    type="password"
-                                    required
-                                    className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
-                                    ref={passwordRef}
-                                />
 
-                                {/* button  */}
                                 <div className="btnContainer grid grid-rows-2 place-items-center">
                                     <>
                                         <button
                                             disabled={loading}
                                             className="btn-auth hover:bg-jet hover:text-link"
                                         >
-                                            Log In
+                                            Reset Passowrd
                                         </button>
                                         <p>
-                                            Don't have an account?
                                             <Link
-                                                to="/register"
+                                                to="/login"
                                                 className="pl-2 cursor-pointer text-snow"
                                             >
-                                                Register
+                                                Login
                                             </Link>
                                         </p>
                                     </>
@@ -94,4 +94,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default ForgotPassword;
