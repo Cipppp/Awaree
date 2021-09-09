@@ -2,6 +2,13 @@ import React, { useContext, useState, useEffect } from 'react';
 import firebaseAuth from '../../firebase';
 import 'firebase/firestore';
 import { getDatabase, set, ref, update } from 'firebase/database';
+import { useHistory } from 'react-router';
+import {
+    getAuth,
+    signInWithPopup,
+    GithubAuthProvider,
+    GoogleAuthProvider,
+} from 'firebase/auth';
 
 const AuthContext = React.createContext();
 
@@ -12,8 +19,11 @@ export function useAuth() {
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
+    const history = useHistory();
+
     // Connect to cloud firestore
     const refFirestore = firebaseAuth.firestore().collection('answers');
+
     // Connect to realtime database
     const db = getDatabase();
 
@@ -41,6 +51,31 @@ export function AuthProvider({ children }) {
 
     function updatePassword(password) {
         return currentUser.updatePassword(password);
+    }
+
+    function GithubLogin() {
+        const provider = new GithubAuthProvider();
+        const auth = getAuth();
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                history.push('/status');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    function GoogleLogin() {
+        const provider = new GoogleAuthProvider();
+        const auth = getAuth();
+
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                history.push('/status');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     // #### Cloud firebase ####
@@ -92,11 +127,11 @@ export function AuthProvider({ children }) {
     // #### Realtime database ####
     function updateUserData(answer) {
         const db = getDatabase();
-        update(ref(db, 'answers/' + currentUser.uid), answer);
+        update(ref(db, 'Answers/' + currentUser.uid), answer);
     }
     function writeUserData(answer) {
         const db = getDatabase();
-        set(ref(db, 'answers/' + currentUser.uid), answer);
+        set(ref(db, 'Answers/' + currentUser.uid), answer);
     }
 
     useEffect(() => {
@@ -121,6 +156,8 @@ export function AuthProvider({ children }) {
         editAnswer,
         writeUserData,
         updateUserData,
+        GithubLogin,
+        GoogleLogin,
     };
 
     return (

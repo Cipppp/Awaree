@@ -6,7 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 function Login() {
     const emailRef = useRef();
     const passwordRef = useRef();
-    const { login } = useAuth();
+    const { login, GithubLogin, GoogleLogin } = useAuth();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
@@ -91,6 +91,20 @@ function Login() {
                                     </div>
                                 </>
                             </form>
+                            <button
+                                disabled={loading}
+                                onClick={GithubLogin}
+                                className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
+                            >
+                                Github
+                            </button>{' '}
+                            <button
+                                disabled={loading}
+                                onClick={GithubLogin}
+                                className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
+                            >
+                                Google
+                            </button>
                         </div>
                     </div>
                 </div>
