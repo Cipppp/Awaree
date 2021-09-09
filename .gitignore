@@ -38,3 +38,6 @@ firebase.js
 *.sqlite 
 
 
+
+# Local Netlify folder
+.netlify

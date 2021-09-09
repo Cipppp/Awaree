@@ -13,7 +13,7 @@ function Navbar() {
             <div className="flex items-center justify-between mx-auto fixed bg-black w-full">
                 <Link to="/">
                     <h1 className="text-gray-300 md:bg-red-600 font-josefin text-5xl p-8">
-                        Awaree.
+                        Aware.
                     </h1>
                 </Link>
                 {currentUser ? (
