@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import firebaseAuth from '../../firebase';
 import 'firebase/firestore';
+import { getDatabase, set, ref, update } from 'firebase/database';
+
 const AuthContext = React.createContext();
 
 export function useAuth() {
@@ -11,7 +13,9 @@ export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
     // Connect to cloud firestore
-    const ref = firebaseAuth.firestore().collection('answers');
+    const refFirestore = firebaseAuth.firestore().collection('answers');
+    // Connect to realtime database
+    const db = getDatabase();
 
     function signup(email, password) {
         return firebaseAuth
@@ -39,9 +43,9 @@ export function AuthProvider({ children }) {
         return currentUser.updatePassword(password);
     }
 
-    // Get answers
+    // #### Cloud firebase ####
     function getAnswers() {
-        ref.onSnapshot((querySnapshot) => {
+        refFirestore.onSnapshot((querySnapshot) => {
             const items = [];
             querySnapshot.forEach((doc) => {
                 items.push(doc.data());
@@ -51,37 +55,48 @@ export function AuthProvider({ children }) {
         });
     }
 
-    // Get only items from owner
     function getItems() {
         setLoading(true);
         //orderBy('')
-        ref.where('id', '==', currentUser.uid).onSnapshot((querySnapshot) => {
-            const items = [];
-            querySnapshot.forEach((doc) => {
-                items.push(doc.data());
+        refFirestore
+            .where('id', '==', currentUser.uid)
+            .onSnapshot((querySnapshot) => {
+                const items = [];
+                querySnapshot.forEach((doc) => {
+                    items.push(doc.data());
+                });
+                // setItems(items)
+                setLoading(false);
+                return items;
             });
-            // setItems(items)
-            setLoading(false);
-            return items;
-        });
     }
 
-    // Add answer
     function addAnswer(newAnswer) {
-        ref.doc(newAnswer.id)
+        refFirestore
+            .doc(newAnswer.id)
             .set(newAnswer)
             .catch((err) => {
                 console.log(err);
             });
     }
 
-    // Edit answer
     function editAnswer(answer) {
-        ref.doc(answer.id)
+        refFirestore
+            .doc(answer.id)
             .update(answer)
             .catch((err) => {
                 console.log(err);
             });
+    }
+
+    // #### Realtime database ####
+    function updateUserData(answer) {
+        const db = getDatabase();
+        update(ref(db, 'answers/' + currentUser.uid), answer);
+    }
+    function writeUserData(answer) {
+        const db = getDatabase();
+        set(ref(db, 'answers/' + currentUser.uid), answer);
     }
 
     useEffect(() => {
@@ -104,6 +119,8 @@ export function AuthProvider({ children }) {
         getAnswers,
         addAnswer,
         editAnswer,
+        writeUserData,
+        updateUserData,
     };
 
     return (

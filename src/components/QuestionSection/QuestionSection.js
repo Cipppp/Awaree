@@ -3,14 +3,15 @@ import scrollTo from 'gatsby-plugin-smoothscroll';
 import { useAuth } from '../contexts/AuthContext';
 import { useHistory } from 'react-router-dom';
 import 'firebase/firestore';
+import { getDatabase, set, ref, update } from 'firebase/database';
 import { v4 as uuidv4 } from 'uuid';
 
 const QuestionSection = ({ rightSection, text, id, done }) => {
-    const [profile, setProfile] = useState(0);
-    const [series, setSeries] = useState(0);
-    const [group, setGroup] = useState(0);
-    const [activities, setActivities] = useState(0);
-    const { currentUser, addAnswer, editAnswer } = useAuth();
+    const [profile, setProfile] = useState('');
+    const [series, setSeries] = useState('');
+    const [group, setGroup] = useState('');
+    const [activities, setActivities] = useState('');
+    const { currentUser, writeUserData, updateUserData } = useAuth();
     const history = useHistory();
     const userId = currentUser.uid;
 
@@ -25,16 +26,16 @@ const QuestionSection = ({ rightSection, text, id, done }) => {
         scrollTo('#quiz_' + (id + 1));
         switch (id) {
             case 1:
-                addAnswer({ profile, id: userId });
+                writeUserData({ profile, series, group, activities });
                 break;
             case 2:
-                editAnswer({ series, id: userId });
+                updateUserData({ series: series });
                 break;
             case 3:
-                editAnswer({ group, id: userId });
+                updateUserData({ group: group });
                 break;
             case 4:
-                editAnswer({ activities, id: userId });
+                updateUserData({ activities: activities });
                 break;
             default:
                 break;
