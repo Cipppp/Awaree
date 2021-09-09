@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import scrollTo from 'gatsby-plugin-smoothscroll';
-import firebaseAuth from '../../firebase';
-import { getDatabase, ref, set } from 'firebase/database';
 import { useAuth } from '../contexts/AuthContext';
 import { useHistory } from 'react-router-dom';
+import 'firebase/firestore';
+import { v4 as uuidv4 } from 'uuid';
 
 const QuestionSection = ({ rightSection, text, id, done }) => {
-    const [answer, setAnswer] = useState('');
-    const { currentUser } = useAuth();
+    const [profile, setProfile] = useState(0);
+    const [series, setSeries] = useState(0);
+    const [group, setGroup] = useState(0);
+    const [activities, setActivities] = useState(0);
+    const { currentUser, addAnswer, editAnswer } = useAuth();
     const history = useHistory();
-    var profileRef = '';
-    var seriesRef = '';
-    var groupRef = '';
-    var activitiesRef = '';
-    var userId = id;
-
-    const handleOnChange = (e) => {
-        setAnswer(e.target.value);
-    };
+    const userId = currentUser.uid;
 
     const keyPressed = ({ key }) => {
         // Capture answer on Enter key
@@ -26,49 +21,53 @@ const QuestionSection = ({ rightSection, text, id, done }) => {
         }
     };
 
-    function handleDone() {
-        const db = getDatabase();
-        console.log(userId);
-        console.log(parseInt(userId));
-        set(ref(db, 'Answers/' + parseInt(userId)), {
-            profile: 'CTI',
-            series: 'CC',
-            group: '313',
-            activities: 'Yes',
-        });
-        history.push('/status');
-    }
-
     const handleClick = () => {
-        // Save search term state to React Hooks
-        console.log(id);
-        if (id === 1) {
-            profileRef = answer;
-            console.log(profileRef);
-        } else if (id === 2) {
-            seriesRef = answer;
-            console.log(seriesRef);
-        } else if (id === 3) {
-            groupRef = answer;
-            console.log(groupRef);
-        } else if (id === 4) {
-            activitiesRef = answer;
-            console.log(activitiesRef);
-        }
         scrollTo('#quiz_' + (id + 1));
+        switch (id) {
+            case 1:
+                addAnswer({ profile, id: userId });
+                break;
+            case 2:
+                editAnswer({ series, id: userId });
+                break;
+            case 3:
+                editAnswer({ group, id: userId });
+                break;
+            case 4:
+                editAnswer({ activities, id: userId });
+                break;
+            default:
+                break;
+        }
     };
 
-    const createAnswer = () => {
-        // const answerRef = firebaseAuth.database().ref('Answers');
-        // const item = {
-        //     answer,
-        // };
-        // answerRef.push(item);
+    const handleDone = () => {
+        history.push('/status');
+    };
+
+    const handleOnChange = (e) => {
+        console.log('Value = ' + id);
+
+        switch (id) {
+            case 1:
+                setProfile(e.target.value);
+                break;
+            case 2:
+                setSeries(e.target.value);
+                break;
+            case 3:
+                setGroup(e.target.value);
+                break;
+            case 4:
+                setActivities(e.target.value);
+                break;
+            default:
+                break;
+        }
     };
 
     return (
         <>
-            {console.log(currentUser.uid)}
             <div className="grid grid-cols-2" id={`quiz_${id}`}>
                 <div
                     className={`h-screen flex justify-center items-center bg-login ${
