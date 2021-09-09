@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import loginImg from '../../assets/login.png';
+import { ReactComponent as LoginImg } from '../../assets/login.svg';
 import { Link, useHistory } from 'react-router-dom';
 
 function Login() {
@@ -26,9 +25,9 @@ function Login() {
 
     return (
         <div className="grid md:grid-cols-2 items-center">
-            <div className="left-side h-screen flex justify-center items-center">
+            <div className="left-side h-screen flex justify-center items-center bg-snow">
                 <div>
-                    <LazyLoadImage src={loginImg} />
+                    <LoginImg className="p-16" />
                 </div>
             </div>
             <div className="right-side bg-login h-full flex justify-center items-center">
@@ -41,51 +40,57 @@ function Login() {
                                 </p>
                             )}
                             <form onSubmit={handleSubmit} action="submit">
-                                {/* username  */}
-                                <h1 className="">Email</h1>
+                                {/* Email  */}
+                                <h1 className="text-xl">Email</h1>
                                 <input
                                     type="text"
                                     autoFocus
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
+                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-full text-xl border-4 border-jet"
                                     ref={emailRef}
                                 />
-                                {/* password  */}
-                                <h1>Password</h1>
+                                {/* Password  */}
+                                <h1 className="text-xl pt-2">Password</h1>
                                 <input
                                     type="password"
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
+                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-full text-xl border-4 border-jet"
                                     ref={passwordRef}
                                 />
-
+                                {error && (
+                                    <p className="text-red-700 text-xl flex justify-center mt-2 font-josefin">
+                                        {error}
+                                    </p>
+                                )}
                                 {/* button  */}
-                                <div className="btnContainer grid grid-rows-2 place-items-center">
-                                    <>
-                                        <button
-                                            disabled={loading}
-                                            className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
-                                        >
-                                            Log In
-                                        </button>
-                                        <p>
-                                            Don't have an account?
-                                            <Link
-                                                to="/register"
-                                                className="pl-2 cursor-pointer text-snow"
-                                            >
-                                                Register
-                                            </Link>
-                                        </p>
-                                    </>
+                                <div className="btnContainer flex place-items-start justify-center mb-5">
+                                    <button
+                                        disabled={loading}
+                                        className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
+                                    >
+                                        Log in
+                                    </button>
                                 </div>
+                                <>
+                                    <p className="text-xl">
+                                        Don't have an account?
+                                        <Link
+                                            to="/register"
+                                            className="pl-2 cursor-pointer text-snow"
+                                        >
+                                            Register
+                                        </Link>
+                                    </p>
+                                    <div>
+                                        <Link
+                                            to="/forgot-password"
+                                            className="text-xl"
+                                        >
+                                            Forgot password?
+                                        </Link>
+                                    </div>
+                                </>
                             </form>
-
-                            <div>
-                                <Link to="/forgot-password">
-                                    Forgot password?
-                                </Link>
-                            </div>
                         </div>
                     </div>
                 </div>

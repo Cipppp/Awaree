@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import loginImg from '../../assets/login.png';
+import { ReactComponent as RegisterImg } from '../../assets/authentication.svg';
 import { Link, useHistory } from 'react-router-dom';
 
 function Register() {
@@ -32,10 +31,10 @@ function Register() {
     }
 
     return (
-        <div className="grid md:grid-cols-2 items-center">
-            <div className="left-side h-screen flex justify-center items-center">
+        <div className="grid md:grid-cols-2 items-center overflow-hidden">
+            <div className="left-side h-screen flex justify-center items-center bg-snow order-last">
                 <div>
-                    <LazyLoadImage src={loginImg} />
+                    <RegisterImg className="ml-20 p-10 w-10/12" />
                 </div>
             </div>
 
@@ -43,37 +42,39 @@ function Register() {
                 <div className="flex w-full justify-center">
                     <div className="login w-7/12 mt-20">
                         <div className="loginContainer font-josefin p-8 text-2xl text-jet">
-                            {error && (
-                                <p className="text-white font-josefin">
-                                    {error}
-                                </p>
-                            )}
                             <form onSubmit={handleSubmit} action="submit">
                                 {/* username  */}
-                                <h1 className="">Email</h1>
+                                <h1 className="text-xl">Email</h1>
                                 <input
                                     type="text"
                                     autoFocus
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
+                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-full text-xl border-4 border-jet"
                                     ref={emailRef}
                                 />
                                 {/* password  */}
-                                <h1>Password</h1>
+                                <h1 className="text-xl pt-2">Password</h1>
                                 <input
                                     type="password"
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
+                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-full text-xl border-4 border-jet"
                                     ref={passwordRef}
                                 />
-                                <h1>Password confirmation</h1>
+                                <h1 className="text-xl pt-2">
+                                    Password confirmation
+                                </h1>
                                 <input
                                     type="password"
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
+                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-full text-xl border-4 border-jet"
                                     ref={passwordConfirmRef}
                                 />
 
+                                {error && (
+                                    <p className="text-red-700 text-xl flex justify-center mt-2 font-josefin">
+                                        {error}
+                                    </p>
+                                )}
                                 {/* button  */}
                                 <div className="btnContainer grid grid-rows-2 place-items-center">
                                     <>
@@ -83,13 +84,13 @@ function Register() {
                                         >
                                             Register
                                         </button>
-                                        <p>
+                                        <p className="text-xl">
                                             Already have an account?
                                             <Link
                                                 to="/login"
-                                                className="pl-2 cursor-pointer text-snow"
+                                                className="pl-2 text-xl cursor-pointer text-snow"
                                             >
-                                                Log In
+                                                Log in
                                             </Link>
                                         </p>
                                     </>

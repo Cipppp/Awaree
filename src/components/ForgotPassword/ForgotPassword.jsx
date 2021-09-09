@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import loginImg from '../../assets/login.png';
+import { ReactComponent as PasswordImg } from '../../assets/password.svg';
 import { Link } from 'react-router-dom';
 
 function ForgotPassword() {
@@ -28,9 +27,9 @@ function ForgotPassword() {
 
     return (
         <div className="grid md:grid-cols-2 items-center">
-            <div className="left-side h-screen flex justify-center items-center">
+            <div className="left-side h-screen flex justify-center items-center bg-snow">
                 <div>
-                    <LazyLoadImage src={loginImg} />
+                    <PasswordImg className="p-20" />
                 </div>
             </div>
 
@@ -38,7 +37,9 @@ function ForgotPassword() {
                 <div className="flex w-full justify-center">
                     <div className="login w-7/12 mt-20">
                         <div className="loginContainer font-josefin p-8 text-2xl text-jet">
-                            <h1 className="">Password Reset</h1>
+                            <h1 className="text-2xl font-josefin font-bold flex justify-center">
+                                Password Reset
+                            </h1>
                             {error && (
                                 <p className="text-white font-josefin">
                                     {error}
@@ -50,22 +51,21 @@ function ForgotPassword() {
                                 </p>
                             )}
                             <form onSubmit={handleSubmit} action="submit">
-                                {/* username  */}
-                                <h1 className="">Email</h1>
+                                {/* Email  */}
+                                <h1 className="text-xl pt-2">Email</h1>
                                 <input
                                     type="text"
                                     autoFocus
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
+                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-full text-xl border-4 border-jet"
                                     ref={emailRef}
                                 />
-                                {/* password  */}
 
                                 <div className="btnContainer grid grid-rows-2 place-items-center">
                                     <>
                                         <button
                                             disabled={loading}
-                                            className="btn-auth hover:bg-jet hover:text-link"
+                                            className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
                                         >
                                             Reset Passowrd
                                         </button>
@@ -80,12 +80,6 @@ function ForgotPassword() {
                                     </>
                                 </div>
                             </form>
-
-                            <div>
-                                <Link to="/forgot-password">
-                                    Forgot password?
-                                </Link>
-                            </div>
                         </div>
                     </div>
                 </div>

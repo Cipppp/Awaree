@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { Link, useHistory, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 function UpdateProfile() {
     const emailRef = useRef();
@@ -44,39 +44,41 @@ function UpdateProfile() {
     return (
         <div className="grid md:grid-cols-2 items-center">
             <div className="right-side bg-login h-screen flex justify-center items-center col-span-2">
-                <div className="loginContainer font-josefin p-8 text-2xl text-jet">
-                    <h1 className="">Update Profile</h1>
+                <div className="font-josefin p-20 text-2xl text-jet w-6/12">
+                    <h1 className="text-2xl font-josefin font-bold flex justify-center pt-10">
+                        Update Profile
+                    </h1>
                     {error && (
                         <p className="text-white font-josefin">{error}</p>
                     )}
                     <form onSubmit={handleSubmit} action="submit">
-                        {/* username  */}
-                        <h1 className="">Email</h1>
+                        {/* Email  */}
+                        <h1 className="text-xl pt-2">Email</h1>
                         <input
                             type="text"
                             autoFocus
                             required
                             defaultValue={currentUser.email}
-                            className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
+                            className="w-full p-5 focus:outline-none font-bold tracking-wider rounded-full bg-form focus:border-snow text-xl border-4 border-jet"
                             ref={emailRef}
                         />
-                        {/* password  */}
-                        <h1>Password</h1>
+                        {/* Password  */}
+                        <h1 className="text-xl pt-2">Password</h1>
                         <input
                             type="password"
                             placeholder="Leave blank to keep the same"
-                            className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
+                            className="w-full p-5 placeholder-snow leading-3 focus:outline-none font-bold tracking-wider rounded-full bg-form focus:border-snow text-xl border-4 border-jet"
                             ref={passwordRef}
                         />
-                        <h1>Password confirmation</h1>
+                        <h1 className="text-xl pt-2">Password confirmation</h1>
                         <input
                             type="password"
                             placeholder="Leave blank to keep the same"
-                            className="bg-form w-full p-3 focus:outline-none focus:shadow-outline rounded-full"
+                            className="w-full p-5 placeholder-snow leading-3 focus:outline-none font-bold tracking-wider rounded-full bg-form focus:border-snow text-xl border-4 border-jet"
                             ref={passwordConfirmRef}
                         />
 
-                        {/* button  */}
+                        {/* Button  */}
                         <div className="btnContainer grid grid-rows-2 place-items-center">
                             <>
                                 <button

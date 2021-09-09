@@ -1,28 +1,34 @@
+import scrollTo from 'gatsby-plugin-smoothscroll';
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import readingImg from '../../assets/reading_time.png';
+import { ReactComponent as HomeImg } from '../../assets/reading.svg';
+import { ReactComponent as FastImg } from '../../assets/fast.svg';
 import arrowImg from '../../assets/arrow.png';
 import content from '../../content';
-import fastImg from '../../assets/fast.png';
 
 function Home() {
+    const handleOnClick = () => {
+        scrollTo('#slide_section');
+    };
     return (
         <>
-            <div className="grid grid-cols-2 justify-items-center items-center h-screen pt-20">
+            <div className="grid grid-cols-2 justify-items-center items-center h-screen pt-20 ">
                 <div>
-                    <h1 className="p-20 text-5xl font-josefin">
+                    <h1 className="p-20 text-4xl font-josefin">
                         {content.hero.text}
                     </h1>
                 </div>
 
-                <div className="pt-20">
-                    <LazyLoadImage src={readingImg} />
+                <div className="pl-20">
+                    <HomeImg className="h-9/12 w-9/12" />
                 </div>
 
-                <div className="arrow">
-                    <a href="#slide_section">
-                        <LazyLoadImage src={arrowImg} />
-                    </a>
+                <div>
+                    <LazyLoadImage
+                        src={arrowImg}
+                        onClick={handleOnClick}
+                        className="cursor-pointer w-12 mb-20"
+                    />
                 </div>
             </div>
 
@@ -61,7 +67,7 @@ function Home() {
                         <h1 className="font-josefin text-3xl">Easy to use.</h1>
                     </div>
                     <div className="z-10">
-                        <LazyLoadImage src={fastImg} />
+                        <FastImg className="w-9/12 h-9/12" />
                     </div>
                 </div>
                 <div>

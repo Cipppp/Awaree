@@ -3,10 +3,12 @@ import scrollTo from 'gatsby-plugin-smoothscroll';
 import firebaseAuth from '../../firebase';
 import { getDatabase, ref, set } from 'firebase/database';
 import { useAuth } from '../contexts/AuthContext';
+import { useHistory } from 'react-router-dom';
 
 const QuestionSection = ({ rightSection, text, id, done }) => {
     const [answer, setAnswer] = useState('');
     const { currentUser } = useAuth();
+    const history = useHistory();
     var profileRef = '';
     var seriesRef = '';
     var groupRef = '';
@@ -24,13 +26,7 @@ const QuestionSection = ({ rightSection, text, id, done }) => {
         }
     };
 
-    function writeUserData(
-        userId,
-        profileRef,
-        seriesRef,
-        groupRef,
-        activitiesRef
-    ) {
+    function handleDone() {
         const db = getDatabase();
         console.log(userId);
         console.log(parseInt(userId));
@@ -40,6 +36,7 @@ const QuestionSection = ({ rightSection, text, id, done }) => {
             group: '313',
             activities: 'Yes',
         });
+        history.push('/status');
     }
 
     const handleClick = () => {
@@ -82,7 +79,7 @@ const QuestionSection = ({ rightSection, text, id, done }) => {
                         <input
                             type="text"
                             required
-                            className="w-full p-5 focus:outline-none focus:shadow-outline rounded-full"
+                            className="w-full p-5 focus:outline-none font-bold tracking-wider rounded-full bg-form focus:border-snow text-xl border-4 border-jet"
                             onChange={handleOnChange}
                             onKeyPress={keyPressed}
                         />
@@ -90,13 +87,7 @@ const QuestionSection = ({ rightSection, text, id, done }) => {
                         {done ? (
                             <button
                                 className="btn-auth hover:bg-green-300 hover:text-white focus:outline-none"
-                                onClick={writeUserData(
-                                    userId,
-                                    profileRef,
-                                    seriesRef,
-                                    groupRef,
-                                    activitiesRef
-                                )}
+                                onClick={handleDone}
                             >
                                 Done
                             </button>

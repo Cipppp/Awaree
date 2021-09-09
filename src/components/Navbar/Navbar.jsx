@@ -12,8 +12,8 @@ function Navbar() {
         <>
             <div className="flex items-center justify-between mx-auto fixed bg-black w-full">
                 <Link to="/">
-                    <h1 className="text-gray-300 md:bg-red-600 font-josefin text-5xl p-8">
-                        Aware.
+                    <h1 className="text-gray-300 md:bg-red-600 font-josefin text-3xl p-6">
+                        Awaree.
                     </h1>
                 </Link>
                 {currentUser ? (
@@ -28,7 +28,7 @@ function Navbar() {
                         className="text-gray-300 p-4 mr-10 text-2xl font-josefin font-bold tracking-wider focus:outline-none"
                         to="/login"
                     >
-                        Login
+                        Log in
                     </Link>
                 )}
             </div>
