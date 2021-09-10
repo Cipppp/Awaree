@@ -10,3 +10,7 @@
 .btn-auth {
     @apply rounded-full p-2 mt-4 text-xl font-josefin font-bold tracking-wider transition ease-out duration-300 border-jet border-solid border-4;
 }
+
+.btn-auth-with {
+    @apply rounded-full pr-2 pl-2 mt-4 text-lg font-josefin font-bold tracking-wider transition ease-out duration-300 border-jet border-solid border-4 w-auto flex items-center;
+}

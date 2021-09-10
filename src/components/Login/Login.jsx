@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { ReactComponent as LoginImg } from '../../assets/login.svg';
+import { ReactComponent as GithubImg } from '../../assets/github.svg';
+import { ReactComponent as GoogleImg } from '../../assets/google.svg';
 import { Link, useHistory } from 'react-router-dom';
 
 function Login() {
@@ -19,7 +21,9 @@ function Login() {
             setLoading(true);
             await login(emailRef.current.value, passwordRef.current.value);
             history.push('/status');
-        } catch {}
+        } catch {
+            setError('Failed to login.');
+        }
         setLoading(false);
     }
 
@@ -34,11 +38,9 @@ function Login() {
                 <div className="flex w-full justify-center">
                     <div className="login w-7/12 mt-20">
                         <div className="loginContainer font-josefin p-8 text-2xl text-jet">
-                            {error && (
-                                <p className="text-white font-josefin">
-                                    {error}
-                                </p>
-                            )}
+                            <h1 className="text-2xl font-josefin font-bold flex justify-center">
+                                Login
+                            </h1>
                             <form onSubmit={handleSubmit} action="submit">
                                 {/* Email  */}
                                 <h1 className="text-xl">Email</h1>
@@ -89,21 +91,28 @@ function Login() {
                                             Forgot password?
                                         </Link>
                                     </div>
+                                    {error && (
+                                        <p className="text-white font-josefin">
+                                            {error}
+                                        </p>
+                                    )}
                                 </>
                             </form>
                             <button
                                 disabled={loading}
                                 onClick={GithubLogin}
-                                className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
+                                className="btn-auth-with hover:bg-jet hover:text-link focus:outline-none "
                             >
-                                Github
+                                <GithubImg className="w-8 mr-4" />
+                                Continue with Github
                             </button>{' '}
                             <button
                                 disabled={loading}
-                                onClick={GithubLogin}
-                                className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
+                                onClick={GoogleLogin}
+                                className="btn-auth-with hover:bg-jet hover:text-link focus:outline-none "
                             >
-                                Google
+                                <GoogleImg className="w-8 mr-4 pt-2 mb-2" />
+                                Continue with Google
                             </button>
                         </div>
                     </div>

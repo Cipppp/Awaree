@@ -40,16 +40,7 @@ function ForgotPassword() {
                             <h1 className="text-2xl font-josefin font-bold flex justify-center">
                                 Password Reset
                             </h1>
-                            {error && (
-                                <p className="text-white font-josefin">
-                                    {error}
-                                </p>
-                            )}
-                            {message && (
-                                <p className="text-green-300 font-josefin">
-                                    {message}
-                                </p>
-                            )}
+
                             <form onSubmit={handleSubmit} action="submit">
                                 {/* Email  */}
                                 <h1 className="text-xl pt-2">Email</h1>
@@ -77,6 +68,16 @@ function ForgotPassword() {
                                                 Login
                                             </Link>
                                         </p>
+                                        {error && (
+                                            <p className="text-white font-josefin">
+                                                {error}
+                                            </p>
+                                        )}
+                                        {message && (
+                                            <p className="text-green-300 font-josefin">
+                                                {message}
+                                            </p>
+                                        )}
                                     </>
                                 </div>
                             </form>

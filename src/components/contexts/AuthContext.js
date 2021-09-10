@@ -9,6 +9,7 @@ import {
     GithubAuthProvider,
     GoogleAuthProvider,
 } from 'firebase/auth';
+import { v4 as uuidv4 } from 'uuid';
 
 const AuthContext = React.createContext();
 
@@ -134,6 +135,12 @@ export function AuthProvider({ children }) {
         set(ref(db, 'Answers/' + currentUser.uid), answer);
     }
 
+    function writeHomeworkData(homework) {
+        const homeworkdId = uuidv4();
+        const db = getDatabase();
+        set(ref(db, 'Homeworks/' + homeworkdId), homework);
+    }
+
     useEffect(() => {
         const unsubscribe = firebaseAuth.auth().onAuthStateChanged((user) => {
             setCurrentUser(user);
@@ -156,6 +163,7 @@ export function AuthProvider({ children }) {
         editAnswer,
         writeUserData,
         updateUserData,
+        writeHomeworkData,
         GithubLogin,
         GoogleLogin,
     };
