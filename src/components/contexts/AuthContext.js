@@ -162,23 +162,37 @@ export function AuthProvider({ children }) {
         const priorityRefDb = ref(db, 'Homeworks/' + homeworkdId + '/priority');
         onValue(classRefDb, (snapshot) => {
             setDbHomeworkClass(snapshot.val());
-            console.log(dbHomeworkClass);
+            // console.log(dbHomeworkClass);
         });
 
         onValue(difficultyRefDb, (snapshot) => {
             setDbDifficulty(snapshot.val());
-            console.log(dbDifficulty);
+            // console.log(dbDifficulty);
         });
 
         onValue(priorityRefDb, (snapshot) => {
             setDbPriority(snapshot.val());
-            console.log(dbPriority);
+            // console.log(dbPriority);
         });
 
         onValue(durrationRefDb, (snapshot) => {
             setDbDuration(snapshot.val());
-            console.log(dbDuration);
+            // console.log(dbDuration);
         });
+    }
+
+    function resetUserData() {
+        setDbHomeworkClass(null);
+        setDbDifficulty(null);
+        setDbPriority(null);
+        setDbDuration(null);
+    }
+
+    function sendUserData(homeworkClass, difficulty, priority, duration) {
+        setDbHomeworkClass(homeworkClass);
+        setDbDifficulty(difficulty);
+        setDbPriority(priority);
+        setDbDuration(duration);
     }
 
     useEffect(() => {
@@ -206,8 +220,13 @@ export function AuthProvider({ children }) {
         writeHomeworkData,
         GithubLogin,
         GoogleLogin,
-        dbHomeworkClass,
         displayUserData,
+        sendUserData,
+        dbHomeworkClass,
+        dbDifficulty,
+        dbPriority,
+        dbDuration,
+        resetUserData,
     };
 
     return (

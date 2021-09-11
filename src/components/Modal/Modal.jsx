@@ -18,8 +18,17 @@ export default function Modal({ showModal, setShowModal }) {
     const [priority, setPriority] = useState('Medium');
     const [duration, setDuration] = useState(100);
     const [error, setError] = useState('');
-    const { writeHomeworkData, currentUser, dbHomeworkClass, displayUserData } =
-        useAuth();
+    const {
+        writeHomeworkData,
+        currentUser,
+        dbHomeworkClass,
+        dbDifficulty,
+        dbPriority,
+        dbDuration,
+        displayUserData,
+        resetUserData,
+        sendUserData,
+    } = useAuth();
     const [toggle, setToggle] = useState(false);
     const db = getDatabase();
 
@@ -41,7 +50,7 @@ export default function Modal({ showModal, setShowModal }) {
             duration: 250,
         },
         opacity: showModal ? 1 : 0,
-        transform: showModal ? `translateY(-130%)` : `translateY(-200%)`,
+        transform: showModal ? `translateY(-170%)` : `translateY(-200%)`,
     });
 
     const closeModal = (e) => {
@@ -73,7 +82,6 @@ export default function Modal({ showModal, setShowModal }) {
                 priority,
                 duration,
             });
-            // console.log(dbHomeworkClass);
         } catch {
             setError('Failed to add a homework');
         }
@@ -81,6 +89,10 @@ export default function Modal({ showModal, setShowModal }) {
 
     useEffect(() => {
         displayUserData();
+        // console.log(dbHomeworkClass, dbDifficulty, dbPriority, dbDuration);
+        sendUserData(dbHomeworkClass, dbDifficulty, dbPriority, dbDuration);
+        resetUserData();
+
         document.addEventListener('keydown', keyPress);
         return () => document.removeEventListener('keydown', keyPress);
     }, [keyPress]);

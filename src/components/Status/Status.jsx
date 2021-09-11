@@ -11,7 +11,13 @@ function Status() {
     const [value, setValue] = useState(100);
     const [showModal, setShowModal] = useState(false);
     const [toggle, setToggle] = useState(false);
-    const { displayUserData } = useAuth();
+    const {
+        displayUserData,
+        dbHomeworkClass,
+        dbDifficulty,
+        dbPriority,
+        dbDuration,
+    } = useAuth();
 
     const openModal = () => {
         setShowModal((state) => !state);
@@ -26,6 +32,10 @@ function Status() {
         setToggle(false);
     };
 
+    useEffect(() => {
+        // console.log(dbHomeworkClass, dbDifficulty, dbPriority, dbDuration);
+    });
+
     return (
         <div className="overflow-hidden">
             <div className="bg-snow h-screen w-screen flex justify-center items-center">
@@ -38,6 +48,8 @@ function Status() {
                 </div>
             </div>
             <div className="bg-snow sm:grid-cols-1 sm:grid-rows-6 grid md:grid-cols-3 md:grid-rows-2 h-screen w-screen p-20">
+                <Modal showModal={showModal} setShowModal={setShowModal} />
+
                 {/* Card item */}
                 <div className="md:grid md:grid-rows-2 sm:m-4 md:m-10 rounded-3xl shadow-xl">
                     <div className="w-full h-full flex items-center justify-center">
@@ -78,7 +90,8 @@ function Status() {
                         </h1>
                     </div>
                 </div>
-                {/* Card item */}
+
+                {/* Add button */}
                 <div className="flex justify-center items-center sm:m-4 md:m-10 ">
                     <Button
                         onClick={openModal}
@@ -86,13 +99,6 @@ function Status() {
                     >
                         <AddImg className="h-6" />
                     </Button>
-                    <Button
-                        onClick={displayUserData}
-                        className="border-2 hover:bg-black"
-                    >
-                        <AddImg className="h-6" />
-                    </Button>
-                    <Modal showModal={showModal} setShowModal={setShowModal} />
                 </div>
             </div>
         </div>
