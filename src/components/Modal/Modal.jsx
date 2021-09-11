@@ -18,17 +18,7 @@ export default function Modal({ showModal, setShowModal }) {
     const [priority, setPriority] = useState('Medium');
     const [duration, setDuration] = useState(100);
     const [error, setError] = useState('');
-    const {
-        writeHomeworkData,
-        currentUser,
-        dbHomeworkClass,
-        dbDifficulty,
-        dbPriority,
-        dbDuration,
-        displayUserData,
-        resetUserData,
-        sendUserData,
-    } = useAuth();
+    const { writeHomeworkData, currentUser } = useAuth();
     const [toggle, setToggle] = useState(false);
     const db = getDatabase();
 
@@ -76,7 +66,7 @@ export default function Modal({ showModal, setShowModal }) {
             setError('');
             setShowModal(false);
             writeHomeworkData({
-                userId: currentUser.uid,
+                // userId: currentUser.uid,
                 classRef,
                 difficulty,
                 priority,
@@ -88,11 +78,6 @@ export default function Modal({ showModal, setShowModal }) {
     }
 
     useEffect(() => {
-        displayUserData();
-        // console.log(dbHomeworkClass, dbDifficulty, dbPriority, dbDuration);
-        sendUserData(dbHomeworkClass, dbDifficulty, dbPriority, dbDuration);
-        resetUserData();
-
         document.addEventListener('keydown', keyPress);
         return () => document.removeEventListener('keydown', keyPress);
     }, [keyPress]);

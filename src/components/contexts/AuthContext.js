@@ -1,7 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react';
 import firebaseAuth from '../../firebase';
 import 'firebase/firestore';
-import { getDatabase, set, ref, update, onValue } from 'firebase/database';
+import {
+    getDatabase,
+    set,
+    ref,
+    update,
+    onValue,
+    push,
+    query,
+    orderByChild,
+} from 'firebase/database';
 import { useHistory } from 'react-router';
 import {
     getAuth,
@@ -23,11 +32,7 @@ export function AuthProvider({ children }) {
     const history = useHistory();
     // Connect to cloud firestore
     const refFirestore = firebaseAuth.firestore().collection('answers');
-    const homeworkdId = uuidv4();
-    const [dbHomeworkClass, setDbHomeworkClass] = useState('');
-    const [dbDifficulty, setDbDifficulty] = useState('');
-    const [dbPriority, setDbPriority] = useState('');
-    const [dbDuration, setDbDuration] = useState(0);
+    const homeworkId = uuidv4();
 
     // Connect to realtime database
     const db = getDatabase();
@@ -139,61 +144,22 @@ export function AuthProvider({ children }) {
         set(ref(db, 'Answers/' + currentUser.uid), answer);
     }
 
+    // function writeHomeworkData(homework) {
+    //     const db = getDatabase();
+    //     set(ref(db, 'Homeworks/' + homeworkId), homework);
+    // }
+
     function writeHomeworkData(homework) {
         const db = getDatabase();
-        set(ref(db, 'Homeworks/' + homeworkdId), homework);
 
-        // setTimeout(() => {
-        //     displayUserData();
-        // }, 10000);
+        const homeworkListRef = ref(db, 'Homeworks/' + currentUser.uid);
+
+        const newPostRef = push(homeworkListRef);
+        set(newPostRef, homework);
     }
 
-    function displayUserData() {
-        const db = getDatabase();
-        const classRefDb = ref(db, 'Homeworks/' + homeworkdId + '/classRef');
-        const difficultyRefDb = ref(
-            db,
-            'Homeworks/' + homeworkdId + '/difficulty'
-        );
-        const durrationRefDb = ref(
-            db,
-            'Homeworks/' + homeworkdId + '/duration'
-        );
-        const priorityRefDb = ref(db, 'Homeworks/' + homeworkdId + '/priority');
-        onValue(classRefDb, (snapshot) => {
-            setDbHomeworkClass(snapshot.val());
-            // console.log(dbHomeworkClass);
-        });
-
-        onValue(difficultyRefDb, (snapshot) => {
-            setDbDifficulty(snapshot.val());
-            // console.log(dbDifficulty);
-        });
-
-        onValue(priorityRefDb, (snapshot) => {
-            setDbPriority(snapshot.val());
-            // console.log(dbPriority);
-        });
-
-        onValue(durrationRefDb, (snapshot) => {
-            setDbDuration(snapshot.val());
-            // console.log(dbDuration);
-        });
-    }
-
-    function resetUserData() {
-        setDbHomeworkClass(null);
-        setDbDifficulty(null);
-        setDbPriority(null);
-        setDbDuration(null);
-    }
-
-    function sendUserData(homeworkClass, difficulty, priority, duration) {
-        setDbHomeworkClass(homeworkClass);
-        setDbDifficulty(difficulty);
-        setDbPriority(priority);
-        setDbDuration(duration);
-    }
+    // TODO Read homework data
+    // ...
 
     useEffect(() => {
         const unsubscribe = firebaseAuth.auth().onAuthStateChanged((user) => {
@@ -220,13 +186,6 @@ export function AuthProvider({ children }) {
         writeHomeworkData,
         GithubLogin,
         GoogleLogin,
-        displayUserData,
-        sendUserData,
-        dbHomeworkClass,
-        dbDifficulty,
-        dbPriority,
-        dbDuration,
-        resetUserData,
     };
 
     return (
