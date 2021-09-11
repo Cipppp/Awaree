@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { ReactComponent as AddFile } from '../../assets/addFile.svg';
-import { v4 as uuidv4 } from 'uuid';
 import './Modal.css';
 import {
     Background,
@@ -10,6 +9,7 @@ import {
     CloseModalButton,
 } from '../componentStyles';
 import { useAuth, currentUser } from '../contexts/AuthContext';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
 export default function Modal({ showModal, setShowModal }) {
     const modalRef = useRef();
@@ -18,8 +18,10 @@ export default function Modal({ showModal, setShowModal }) {
     const [priority, setPriority] = useState('Medium');
     const [duration, setDuration] = useState(100);
     const [error, setError] = useState('');
-    const { writeHomeworkData, currentUser } = useAuth();
+    const { writeHomeworkData, currentUser, dbHomeworkClass, displayUserData } =
+        useAuth();
     const [toggle, setToggle] = useState(false);
+    const db = getDatabase();
 
     const openModal = () => {
         setShowModal((state) => !state);
@@ -58,11 +60,12 @@ export default function Modal({ showModal, setShowModal }) {
         [setShowModal, showModal]
     );
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
 
         try {
             setError('');
+            setShowModal(false);
             writeHomeworkData({
                 userId: currentUser.uid,
                 classRef,
@@ -70,12 +73,14 @@ export default function Modal({ showModal, setShowModal }) {
                 priority,
                 duration,
             });
+            // console.log(dbHomeworkClass);
         } catch {
             setError('Failed to add a homework');
         }
     }
 
     useEffect(() => {
+        displayUserData();
         document.addEventListener('keydown', keyPress);
         return () => document.removeEventListener('keydown', keyPress);
     }, [keyPress]);

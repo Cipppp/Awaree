@@ -15,6 +15,8 @@ module.exports = {
                 jet: '#353535',
                 form: '#E2A497',
                 link: '#F5796D',
+                card: '#E6E6E6',
+                cardBullet: '#C4C4C4',
             },
         },
     },

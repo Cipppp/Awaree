@@ -54,7 +54,7 @@
 .field .value {
     position: absolute;
     font-size: 18px;
-    color: #664aff;
+    color: #353535;
     font-weight: 600;
 }
 .field .value.left {
@@ -79,8 +79,8 @@
     height: 20px;
     background: red;
     border-radius: 50%;
-    background: #664aff;
-    border: 1px solid #664aff;
+    background: #353535;
+    border: 1px solid #353535;
     cursor: pointer;
 }
 .range input::-moz-range-thumb {
@@ -89,10 +89,10 @@
     height: 20px;
     background: red;
     border-radius: 50%;
-    background: #664aff;
-    border: 1px solid #664aff;
+    background: #353535;
+    border: 1px solid #353535;
     cursor: pointer;
 }
 .range input::-moz-range-progress {
-    background: #664aff;
+    background: #353535;
 }

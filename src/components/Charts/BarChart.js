@@ -3,6 +3,7 @@ import { Bar, defaults, Chart } from 'react-chartjs-2';
 
 // defaults.defaultFontFamily = 'Arial';
 defaults.font.family = 'Josefin Sans';
+defaults.font.size = 13;
 
 function BarChart({ sectionLabel, colors, dataset }) {
     return (
@@ -41,15 +42,15 @@ function BarChart({ sectionLabel, colors, dataset }) {
                         },
                     },
                 },
-                // scales: {
-                //     yAxes: [
-                //         {
-                //             ticks: {
-                //                 beginAtZero: true,
-                //             },
-                //         },
-                //     ],
-                // },
+                scales: {
+                    yAxes: [
+                        {
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        },
+                    ],
+                },
             }}
         />
     );
