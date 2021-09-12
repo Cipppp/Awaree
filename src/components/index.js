@@ -9,3 +9,4 @@ export { default as ForgotPassword } from './ForgotPassword/ForgotPassword';
 export { default as UpdateProfile } from './UpdateProfile/UpdateProfile';
 export { default as Settings } from './Settings/Settings';
 export { default as Modal } from './Modal/Modal';
+export { default as ProgressBar } from './ProgressBar/ProgressBar';
