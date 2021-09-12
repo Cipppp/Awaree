@@ -17,12 +17,18 @@ function Navbar() {
                     </h1>
                 </Link>
                 {currentUser ? (
-                    <Link
-                        className="text-gray-300 p-4 mr-10 text-xl font-josefin font-bold tracking-wider focus:outline-none"
-                        to="/settings"
-                    >
-                        Settings
-                    </Link>
+                    <>
+                        <h1 className="text-gray-300 p-4 mr-10 text-xl font-josefin font-bold tracking-wider focus:outline-none">
+                            {currentUser.displayName}
+                        </h1>
+
+                        <Link
+                            className="text-gray-300 p-4 mr-10 text-xl font-josefin font-bold tracking-wider focus:outline-none"
+                            to="/settings"
+                        >
+                            Settings
+                        </Link>
+                    </>
                 ) : isOnPage ? null : (
                     <Link
                         className="text-gray-300 p-4 mr-10 text-2xl font-josefin font-bold tracking-wider focus:outline-none"

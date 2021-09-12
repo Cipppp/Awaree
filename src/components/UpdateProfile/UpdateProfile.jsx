@@ -87,6 +87,7 @@ function UpdateProfile() {
                                 >
                                     Update
                                 </button>
+
                                 <p>
                                     <Link
                                         to="/status"

@@ -14,6 +14,7 @@ import {
 import { useHistory } from 'react-router';
 import {
     getAuth,
+    deleteUser,
     signInWithPopup,
     GithubAuthProvider,
     GoogleAuthProvider,
@@ -38,6 +39,7 @@ export function AuthProvider({ children }) {
     // Connect to realtime database
     const db = getDatabase();
 
+    // User options
     function signup(email, password) {
         return firebaseAuth
             .auth()
@@ -62,6 +64,21 @@ export function AuthProvider({ children }) {
 
     function updatePassword(password) {
         return currentUser.updatePassword(password);
+    }
+
+    function deleteUserData() {
+        const auth = getAuth();
+        const user = auth.currentUser;
+
+        deleteUser(user)
+            .then(() => {
+                console.log('User deleted.');
+            })
+            .catch((error) => {
+                console.log('There was an error.', error);
+                // An error ocurred
+                // ...
+            });
     }
 
     function GithubLogin() {
@@ -215,6 +232,7 @@ export function AuthProvider({ children }) {
         GithubLogin,
         GoogleLogin,
         displayUserData,
+        deleteUserData,
         homeworkValue,
     };
 

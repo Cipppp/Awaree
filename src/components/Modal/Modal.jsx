@@ -10,6 +10,7 @@ import {
 } from '../componentStyles';
 import { useAuth, currentUser } from '../contexts/AuthContext';
 import { getDatabase, ref, onValue } from 'firebase/database';
+import { getMessaging, getToken } from 'firebase/messaging';
 
 export default function Modal({ showModal, setShowModal }) {
     const modalRef = useRef();
@@ -21,6 +22,25 @@ export default function Modal({ showModal, setShowModal }) {
     const { writeHomeworkData, currentUser, displayUserData } = useAuth();
     const [toggle, setToggle] = useState(false);
     const db = getDatabase();
+    const messaging = getMessaging();
+
+    getToken(messaging, { vapidKey: 'BKagOny0KF_2pCJQ3m....moL0ewzQ8rZu' })
+        .then((currentToken) => {
+            if (currentToken) {
+                // Send the token to your server and update the UI if necessary
+                // ...
+            } else {
+                // Show permission request UI
+                console.log(
+                    'No registration token available. Request permission to generate one.'
+                );
+                // ...
+            }
+        })
+        .catch((err) => {
+            console.log('An error occurred while retrieving token. ', err);
+            // ...
+        });
 
     const openModal = () => {
         setShowModal((state) => !state);

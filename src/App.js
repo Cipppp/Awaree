@@ -15,23 +15,32 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import { AuthProvider } from './components/contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
+import { getMessaging, getToken } from 'firebase/messaging';
 
 function App() {
     const [loading, setLoading] = useState(true);
-
-    // function displayWebsite() {
-    //     try {
-    //         setLoading(true);
-    //         console.log('#2 Loading: ', loading);
-    //     } catch {}
-
-    //     console.log('#3 Loading: ', loading);
-    // }
 
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
         }, 700);
+
+        // const messaging = getMessaging();
+        // getToken(messaging, {
+        //     vapidKey:
+        //         'BB9lr_QIBXSjqXqmk7jhS7Fg7S__31Q2QVl4KYxdf88a7Xjks7vNZGSyqkpQuLms0OJpfQ-T9JZb40h5s5zY0uc',
+        // })
+        //     .then((currentToken) => {
+        //         if (currentToken) {
+        //             console.log('Token: ', currentToken);
+        //             // ...
+        //         } else {
+        //             // ...
+        //         }
+        //     })
+        //     .catch((err) => {
+        //         console.log('An error occurred while retrieving token. ', err);
+        //     });
     }, []);
 
     return (

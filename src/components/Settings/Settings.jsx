@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 function Settings() {
     const history = useHistory();
-    const { logout } = useAuth();
+    const { logout, deleteUserData } = useAuth();
     const [error, setError] = useState('');
 
     const routeChangeUpdate = () => {
@@ -28,13 +28,21 @@ function Settings() {
 
     return (
         <>
-            <div className="grid grid-rows-6 h-screen bg-form">
+            <div className="grid grid-rows-9 h-screen bg-form">
                 <div className="row-span-3 flex justify-center items-end h-full">
                     <button
                         className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
                         onClick={routeChangeUpdate}
                     >
                         Update profile
+                    </button>
+                </div>
+                <div className="row-span-3 flex justify-center items-center h-full">
+                    <button
+                        className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
+                        onClick={deleteUserData}
+                    >
+                        Delete user
                     </button>
                 </div>
                 <div
