@@ -33,6 +33,7 @@ export function AuthProvider({ children }) {
     // Connect to cloud firestore
     const refFirestore = firebaseAuth.firestore().collection('answers');
     const homeworkId = uuidv4();
+    const [homeworkValue, setHomeworkValue] = useState([]);
 
     // Connect to realtime database
     const db = getDatabase();
@@ -158,6 +159,33 @@ export function AuthProvider({ children }) {
         set(newPostRef, homework);
     }
 
+    function displayUserData() {
+        const db = getDatabase();
+        setHomeworkValue([]);
+        const dbRef = query(
+            ref(db, 'Homeworks/' + currentUser.uid),
+            orderByChild('/priority')
+        );
+
+        onValue(
+            dbRef,
+            (snapshot) => {
+                snapshot.forEach((childSnap) => {
+                    // for (var key in childSnap.val()) {
+                    //     setHomeworkValue([
+                    //         ...homeworkValue,
+                    //         childSnap.val()[key],
+                    setHomeworkValue(childSnap.val());
+                    //     ]);
+                    // }
+                });
+            },
+            {
+                onlyOnce: true,
+            }
+        );
+    }
+
     // TODO Read homework data
     // ...
 
@@ -186,6 +214,8 @@ export function AuthProvider({ children }) {
         writeHomeworkData,
         GithubLogin,
         GoogleLogin,
+        displayUserData,
+        homeworkValue,
     };
 
     return (

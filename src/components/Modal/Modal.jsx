@@ -18,7 +18,7 @@ export default function Modal({ showModal, setShowModal }) {
     const [priority, setPriority] = useState('Medium');
     const [duration, setDuration] = useState(100);
     const [error, setError] = useState('');
-    const { writeHomeworkData, currentUser } = useAuth();
+    const { writeHomeworkData, currentUser, displayUserData } = useAuth();
     const [toggle, setToggle] = useState(false);
     const db = getDatabase();
 
@@ -72,6 +72,7 @@ export default function Modal({ showModal, setShowModal }) {
                 priority,
                 duration,
             });
+            displayUserData();
         } catch {
             setError('Failed to add a homework');
         }
@@ -145,7 +146,7 @@ export default function Modal({ showModal, setShowModal }) {
                                                     toggle ? 'show' : ''
                                                 }`}
                                                 style={{
-                                                    left: duration / 2 + '%',
+                                                    left: duration / 4 + '%',
                                                 }}
                                             >
                                                 {duration}
@@ -156,14 +157,14 @@ export default function Modal({ showModal, setShowModal }) {
                                             <input
                                                 type="range"
                                                 min="0"
-                                                max="200"
+                                                max="400"
                                                 value={duration}
                                                 steps="1"
                                                 onChange={handleOnChange}
                                                 onBlur={handleOnBlur}
                                             />
                                             <div className="value right">
-                                                200
+                                                400
                                             </div>
                                         </div>
                                     </div>
