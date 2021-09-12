@@ -6,7 +6,6 @@ import { Button } from '../componentStyles';
 import { ReactComponent as AddImg } from '../../assets/plus.svg';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { set, update, push, query, orderByChild } from 'firebase/database';
-import Card from '../Card/Card';
 
 function Status() {
     const [value, setValue] = useState(100);
