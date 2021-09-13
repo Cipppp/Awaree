@@ -55,8 +55,6 @@ function Status() {
     //     );
     // }
 
-    useEffect(() => {}, []);
-
     return (
         <div className="overflow-hidden">
             {/* First slide */}

@@ -1,6 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 function UpdateProfile() {
     const emailRef = useRef();
@@ -8,36 +12,58 @@ function UpdateProfile() {
     const passwordConfirmRef = useRef();
     const { currentUser, updatePassword, updateEmail } = useAuth();
     const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false);
     const history = useHistory();
+    const customId = 'b6d2a12c-088a-43f4-911b-bf82e7497854';
+
+    const notify = (message) => {
+        toast.success(message, {
+            toastId: customId,
+            position: 'top-center',
+            closeButton: false,
+            hideProgressBar: true,
+            closeOnClick: true,
+            draggablePercent: 50,
+            pauseOnHover: false,
+            draggable: true,
+            theme: 'colored',
+        });
+    };
 
     function handleSubmit(e) {
         e.preventDefault();
-        if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-            return setError('Password do not match');
-        }
-
-        const promises = [];
-        setLoading(true);
         setError('');
 
-        if (emailRef.current.value !== currentUser.email) {
-            promises.push(updateEmail(emailRef.current.value));
+        var message = '';
+        const promises = [];
+
+        if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+            return setError('Password do not match!');
         }
 
-        if (passwordRef.current.value) {
+        if (emailRef.current.value !== currentUser.email) {
+            message = 'Email updated successfully!';
+            promises.push(updateEmail(emailRef.current.value));
+        } else if (
+            passwordRef.current.value &&
+            currentUser.password !== passwordRef.current.value
+        ) {
+            message = 'Password updated successfully!';
             promises.push(updatePassword(passwordRef.current.value));
         }
 
         Promise.all(promises)
             .then(() => {
-                history('/status');
+                if (!error) {
+                    notify(message);
+                    history.push('/settings');
+                }
             })
-            .catch(() => {
+            .catch((error) => {
+                console.log(error);
                 setError('Failed to update account');
             })
             .finally(() => {
-                setLoading(false);
+                //
             });
     }
 
@@ -48,9 +74,7 @@ function UpdateProfile() {
                     <h1 className="text-2xl font-josefin font-bold flex justify-center pt-10">
                         Update Profile
                     </h1>
-                    {error && (
-                        <p className="text-white font-josefin">{error}</p>
-                    )}
+
                     <form onSubmit={handleSubmit} action="submit">
                         {/* Email  */}
                         <h1 className="text-xl pt-2">Email</h1>
@@ -67,7 +91,7 @@ function UpdateProfile() {
                         <input
                             type="password"
                             placeholder="Leave blank to keep the same"
-                            className="w-full p-5 placeholder-snow leading-3 focus:outline-none font-bold tracking-wider rounded-full bg-form focus:border-snow text-xl border-4 border-jet"
+                            className="w-full p-5 placeholder-white leading-3 focus:outline-none font-bold tracking-wider rounded-full bg-form focus:border-snow text-xl border-4 border-jet"
                             ref={passwordRef}
                         />
                         <h1 className="text-xl pt-2">Password confirmation</h1>
@@ -77,21 +101,23 @@ function UpdateProfile() {
                             className="w-full p-5 placeholder-snow leading-3 focus:outline-none font-bold tracking-wider rounded-full bg-form focus:border-snow text-xl border-4 border-jet"
                             ref={passwordConfirmRef}
                         />
+                        {error && (
+                            <p className="text-red-700 flex justify-center pt-2 font-josefin">
+                                {error}
+                            </p>
+                        )}
 
                         {/* Button  */}
                         <div className="btnContainer grid grid-rows-2 place-items-center">
                             <>
-                                <button
-                                    disabled={loading}
-                                    className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
-                                >
+                                <button className="btn-auth hover:bg-jet hover:text-link focus:outline-none">
                                     Update
                                 </button>
 
                                 <p>
                                     <Link
-                                        to="/status"
-                                        className="pl-2 cursor-pointer text-snow"
+                                        to="/settings"
+                                        className="cursor-pointer text-snow"
                                     >
                                         Cancel
                                     </Link>

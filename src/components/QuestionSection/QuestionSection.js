@@ -11,7 +11,7 @@ const QuestionSection = ({ rightSection, text, id, done }) => {
     const [series, setSeries] = useState('');
     const [group, setGroup] = useState('');
     const [activities, setActivities] = useState('');
-    const { currentUser, writeUserData, updateUserData } = useAuth();
+    const { currentUser, writeAnswerData, updateAnswerData } = useAuth();
     const history = useHistory();
     const userId = currentUser.uid;
 
@@ -26,16 +26,16 @@ const QuestionSection = ({ rightSection, text, id, done }) => {
         scrollTo('#quiz_' + (id + 1));
         switch (id) {
             case 1:
-                writeUserData({ profile, series, group, activities });
+                writeAnswerData({ profile, series, group, activities });
                 break;
             case 2:
-                updateUserData({ series: series });
+                updateAnswerData({ series: series });
                 break;
             case 3:
-                updateUserData({ group: group });
+                updateAnswerData({ group: group });
                 break;
             case 4:
-                updateUserData({ activities: activities });
+                updateAnswerData({ activities: activities });
                 break;
             default:
                 break;

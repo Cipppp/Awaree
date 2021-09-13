@@ -91,11 +91,6 @@ function Login() {
                                             Forgot password?
                                         </Link>
                                     </div>
-                                    {error && (
-                                        <p className="text-white font-josefin">
-                                            {error}
-                                        </p>
-                                    )}
                                 </>
                             </form>
                             <button

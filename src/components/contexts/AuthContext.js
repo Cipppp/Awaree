@@ -10,6 +10,8 @@ import {
     push,
     query,
     orderByChild,
+    child,
+    get,
 } from 'firebase/database';
 import { useHistory } from 'react-router';
 import {
@@ -30,20 +32,27 @@ export function useAuth() {
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
+    const [username, setUsername] = useState('');
     const history = useHistory();
-    // Connect to cloud firestore
-    const refFirestore = firebaseAuth.firestore().collection('answers');
+
+    //! Connect to cloud firestore
+    // const refFirestore = firebaseAuth.firestore().collection('answers');
+
     const homeworkId = uuidv4();
     const [homeworkValue, setHomeworkValue] = useState([]);
+    const [message, setMessage] = useState('');
 
-    // Connect to realtime database
+    //! Connect to realtime database
     const db = getDatabase();
 
-    // User options
+    //! Authentication and user options
     function signup(email, password) {
         return firebaseAuth
             .auth()
-            .createUserWithEmailAndPassword(email, password);
+            .createUserWithEmailAndPassword(email, password)
+            .then(() => {
+                // ...
+            });
     }
 
     function login(email, password) {
@@ -59,7 +68,12 @@ export function AuthProvider({ children }) {
     }
 
     function updateEmail(email) {
-        return currentUser.updateEmail(email);
+        return currentUser
+            .updateEmail(email)
+            .then(() => {})
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     function updatePassword(password) {
@@ -106,66 +120,61 @@ export function AuthProvider({ children }) {
             });
     }
 
-    // #### Cloud firebase ####
-    function getAnswers() {
-        refFirestore.onSnapshot((querySnapshot) => {
-            const items = [];
-            querySnapshot.forEach((doc) => {
-                items.push(doc.data());
-            });
-            // setAnswers(items)
-            return items;
-        });
-    }
+    //! Cloud firebase
+    // function getAnswers() {
+    //     refFirestore.onSnapshot((querySnapshot) => {
+    //         const items = [];
+    //         querySnapshot.forEach((doc) => {
+    //             items.push(doc.data());
+    //         });
+    //         // setAnswers(items)
+    //         return items;
+    //     });
+    // }
 
-    function getItems() {
-        setLoading(true);
-        //orderBy('')
-        refFirestore
-            .where('id', '==', currentUser.uid)
-            .onSnapshot((querySnapshot) => {
-                const items = [];
-                querySnapshot.forEach((doc) => {
-                    items.push(doc.data());
-                });
-                // setItems(items)
-                setLoading(false);
-                return items;
-            });
-    }
+    // function getItems() {
+    //     setLoading(true);
+    //orderBy('')
+    // refFirestore
+    //     .where('id', '==', currentUser.uid)
+    //     .onSnapshot((querySnapshot) => {
+    //         const items = [];
+    //         querySnapshot.forEach((doc) => {
+    //             items.push(doc.data());
+    //         });
+    // setItems(items)
+    //             setLoading(false);
+    //             return items;
+    //         });
+    // }
 
-    function addAnswer(newAnswer) {
-        refFirestore
-            .doc(newAnswer.id)
-            .set(newAnswer)
-            .catch((err) => {
-                console.log(err);
-            });
-    }
+    // function addAnswer(newAnswer) {
+    //     refFirestore
+    //         .doc(newAnswer.id)
+    //         .set(newAnswer)
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }
 
-    function editAnswer(answer) {
-        refFirestore
-            .doc(answer.id)
-            .update(answer)
-            .catch((err) => {
-                console.log(err);
-            });
-    }
+    // function editAnswer(answer) {
+    //     refFirestore
+    //         .doc(answer.id)
+    //         .update(answer)
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }
 
-    // #### Realtime database ####
-    function updateUserData(answer) {
+    //! Realtime database
+    function updateAnswerData(answer) {
         const db = getDatabase();
         update(ref(db, 'Answers/' + currentUser.uid), answer);
     }
-    function writeUserData(answer) {
+    function writeAnswerData(answer) {
         const db = getDatabase();
         set(ref(db, 'Answers/' + currentUser.uid), answer);
     }
-
-    // function writeHomeworkData(homework) {
-    //     const db = getDatabase();
-    //     set(ref(db, 'Homeworks/' + homeworkId), homework);
-    // }
 
     function writeHomeworkData(homework) {
         const db = getDatabase();
@@ -174,6 +183,26 @@ export function AuthProvider({ children }) {
 
         const newPostRef = push(homeworkListRef);
         set(newPostRef, homework);
+    }
+
+    function writeUserData(username) {
+        const db = getDatabase();
+        set(ref(db, 'Users/' + currentUser.uid), { username });
+    }
+
+    function getUserData() {
+        const db = getDatabase();
+        const dbRef = ref(db, 'Users/' + currentUser.uid);
+        setUsername('');
+        onValue(
+            dbRef,
+            (snapshot) => {
+                setUsername(snapshot.val().username);
+            },
+            {
+                onlyOnce: true,
+            }
+        );
     }
 
     function displayUserData() {
@@ -223,17 +252,20 @@ export function AuthProvider({ children }) {
         resetPassword,
         updateEmail,
         updatePassword,
-        getAnswers,
-        addAnswer,
-        editAnswer,
+        // getAnswers,
+        // addAnswer,
+        // editAnswer,
+        writeAnswerData,
+        updateAnswerData,
         writeUserData,
-        updateUserData,
         writeHomeworkData,
+        username,
         GithubLogin,
         GoogleLogin,
         displayUserData,
         deleteUserData,
         homeworkValue,
+        getUserData,
     };
 
     return (

@@ -20,7 +20,7 @@ function Settings() {
         setError('');
         try {
             await logout();
-            history.pushState('/login');
+            // history.push('/login');
         } catch {
             setError('Failed to log out.');
         }
@@ -39,7 +39,7 @@ function Settings() {
                 </div>
                 <div className="row-span-3 flex justify-center items-center h-full">
                     <button
-                        className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
+                        className="btn-auth hover:bg-red-700 hover:text-snow hover:border-red-700 focus:outline-none"
                         onClick={deleteUserData}
                     >
                         Delete user

@@ -16,7 +16,16 @@ import './App.css';
 import { AuthProvider } from './components/contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import { getMessaging, getToken } from 'firebase/messaging';
+import { ToastContainer, toast } from 'react-toastify';
 
+const contextClass = {
+    success: 'bg-green-600 pt-4 pb-4',
+    error: 'bg-red-600',
+    info: 'bg-gray-600',
+    warning: 'bg-orange-400',
+    default: 'bg-indigo-600',
+    dark: 'bg-white-600 font-gray-300',
+};
 function App() {
     const [loading, setLoading] = useState(true);
 
@@ -24,23 +33,6 @@ function App() {
         setTimeout(() => {
             setLoading(false);
         }, 700);
-
-        // const messaging = getMessaging();
-        // getToken(messaging, {
-        //     vapidKey:
-        //         'BB9lr_QIBXSjqXqmk7jhS7Fg7S__31Q2QVl4KYxdf88a7Xjks7vNZGSyqkpQuLms0OJpfQ-T9JZb40h5s5zY0uc',
-        // })
-        //     .then((currentToken) => {
-        //         if (currentToken) {
-        //             console.log('Token: ', currentToken);
-        //             // ...
-        //         } else {
-        //             // ...
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         console.log('An error occurred while retrieving token. ', err);
-        //     });
     }, []);
 
     return (
@@ -71,6 +63,23 @@ function App() {
                     </Switch>
                 </AuthProvider>
             )}
+            <ToastContainer
+                style={{ fontFamily: 'Josefin Sans' }}
+                limit={1}
+                position="top-center"
+                autoClose={1200}
+                hideProgressBar={true}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+                toastClassName={({ type }) =>
+                    contextClass[type || 'default'] +
+                    ' relative flex p-1 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer'
+                }
+            />
         </Router>
     );
 }
