@@ -29,6 +29,7 @@ const contextClass = {
 };
 function App() {
     const [loading, setLoading] = useState(true);
+    const [click, setClick] = useState(0);
 
     useEffect(() => {
         setTimeout(() => {
@@ -48,25 +49,25 @@ function App() {
                     <Switch>
                         <Route path="/" exact component={Home} />
                         <PrivateRoute
-                            exact
                             path="/settings"
+                            exact
                             component={Settings}
                         />
                         <Route
-                            exact
                             path="/forgot-password"
+                            exact
                             component={ForgotPassword}
                         />
                         <Route
-                            exact
                             path="/update-profile"
+                            exact
                             component={UpdateProfile}
                         />
-                        <Route exact path="/register" component={Register} />
+                        <Route path="/register" exact component={Register} />
                         {/* User can't access this pace if they are logged in */}
-                        <Route exact path="/login" component={Login} />
-                        <PrivateRoute exact path="/status" component={Status} />
-                        <PrivateRoute exact path="/intro" component={Intro} />
+                        <Route path="/login" exact component={Login} />
+                        <PrivateRoute path="/status" exact component={Status} />
+                        <PrivateRoute path="/intro" exact component={Intro} />
                         <Route path="*" component={PageNotFound} />
                     </Switch>
                 </AuthProvider>

@@ -32,29 +32,6 @@ function Status() {
         setToggle(false);
     };
 
-    // function displayUserData() {
-    //     const db = getDatabase();
-    //     const dbRef = query(
-    //         ref(db, 'Homeworks/' + currentUser.uid),
-    //         orderByChild('/priority')
-    //     );
-
-    //     onValue(
-    //         dbRef,
-    //         (snapshot) => {
-    //             snapshot.forEach((childSnap) => {
-    //                 // console.log('---------------');
-    //                 // for (var key in childSnap.val()) {
-    //                 // }
-    //                 <p>childSnap.val()[key]</p>;
-    //             });
-    //         },
-    //         {
-    //             onlyOnce: true,
-    //         }
-    //     );
-    // }
-
     return (
         <div className="overflow-hidden">
             {/* First slide */}

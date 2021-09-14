@@ -29,6 +29,20 @@ function Navbar() {
 
                         <Link
                             className="text-gray-300 p-4 mr-10 text-xl font-josefin font-bold tracking-wider focus:outline-none"
+                            to="/status"
+                        >
+                            Status
+                        </Link>
+
+                        <Link
+                            className="text-gray-300 p-4 mr-10 text-xl font-josefin font-bold tracking-wider focus:outline-none"
+                            to="#"
+                        >
+                            Subjects
+                        </Link>
+
+                        <Link
+                            className="text-gray-300 p-4 mr-10 text-xl font-josefin font-bold tracking-wider focus:outline-none"
                             to="/settings"
                         >
                             Settings
