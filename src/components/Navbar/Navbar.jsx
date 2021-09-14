@@ -9,9 +9,9 @@ function Navbar() {
     const isOnPage = history.location.pathname === '/login';
 
     useEffect(() => {
-        // if (currentUser) {
-        //     getUserData();
-        // }
+        if (currentUser) {
+            getUserData();
+        }
     }, []);
     return (
         <>

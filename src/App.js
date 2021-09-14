@@ -10,6 +10,7 @@ import {
     UpdateProfile,
     Settings,
     ProgressBar,
+    PageNotFound,
 } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
@@ -46,20 +47,27 @@ function App() {
                     <Navbar />
                     <Switch>
                         <Route path="/" exact component={Home} />
-                        <PrivateRoute path="/settings" component={Settings} />
+                        <PrivateRoute
+                            exact
+                            path="/settings"
+                            component={Settings}
+                        />
                         <Route
+                            exact
                             path="/forgot-password"
                             component={ForgotPassword}
                         />
                         <Route
+                            exact
                             path="/update-profile"
                             component={UpdateProfile}
                         />
-                        <Route path="/register" component={Register} />
+                        <Route exact path="/register" component={Register} />
                         {/* User can't access this pace if they are logged in */}
-                        <Route path="/login" component={Login} />
-                        <PrivateRoute path="/status" component={Status} />
-                        <PrivateRoute path="/intro" component={Intro} />
+                        <Route exact path="/login" component={Login} />
+                        <PrivateRoute exact path="/status" component={Status} />
+                        <PrivateRoute exact path="/intro" component={Intro} />
+                        <Route path="*" component={PageNotFound} />
                     </Switch>
                 </AuthProvider>
             )}
