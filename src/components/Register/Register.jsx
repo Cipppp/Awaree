@@ -57,7 +57,7 @@ function Register() {
                                     type="text"
                                     autoFocus
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-full text-xl border-4 border-jet"
+                                    className="bg-form w-full p-2 focus:outline-none focus:border-snow rounded-lg text-xl border-4 border-jet"
                                     ref={emailRef}
                                 />
                                 {/* Username  */}
@@ -66,7 +66,7 @@ function Register() {
                                     type="text"
                                     autoFocus
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-full text-xl border-4 border-jet"
+                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg text-xl border-4 border-jet"
                                     ref={usernameRef}
                                 />
                                 {/* Password  */}
@@ -74,7 +74,7 @@ function Register() {
                                 <input
                                     type="password"
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-full text-xl border-4 border-jet"
+                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg text-xl border-4 border-jet"
                                     ref={passwordRef}
                                 />
                                 <h1 className="text-xl pt-2">
@@ -83,7 +83,7 @@ function Register() {
                                 <input
                                     type="password"
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-full text-xl border-4 border-jet"
+                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg text-xl border-4 border-jet"
                                     ref={passwordConfirmRef}
                                 />
 
