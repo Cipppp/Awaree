@@ -40,7 +40,7 @@ export default function Modal({ showModal, setShowModal }) {
             duration: 250,
         },
         opacity: showModal ? 1 : 0,
-        transform: showModal ? `translateY(-170%)` : `translateY(-200%)`,
+        transform: showModal ? `translateY(0%)` : `translateY(-200%)`,
     });
 
     const closeModal = (e) => {
