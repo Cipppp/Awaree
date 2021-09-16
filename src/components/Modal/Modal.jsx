@@ -19,7 +19,8 @@ export default function Modal({ showModal, setShowModal }) {
     const [priority, setPriority] = useState('Medium');
     const [duration, setDuration] = useState(100);
     const [error, setError] = useState('');
-    const { writeHomeworkData, currentUser, displayUserData } = useAuth();
+    const { writeHomeworkData, currentUser, displayUserData, updateUserData } =
+        useAuth();
     const [toggle, setToggle] = useState(false);
 
     const openModal = () => {
@@ -72,6 +73,7 @@ export default function Modal({ showModal, setShowModal }) {
                 priority,
                 duration,
             });
+            updateUserData({ duration });
             displayUserData();
         } catch {
             setError('Failed to add a homework');

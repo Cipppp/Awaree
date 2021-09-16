@@ -190,7 +190,27 @@ export function AuthProvider({ children }) {
         set(ref(db, 'Users/' + currentUser.uid), { username });
     }
 
+    function updateUserData(data) {
+        const db = getDatabase();
+        update(ref(db, 'Users/' + currentUser.uid), data);
+    }
+
     function getUserData() {
+        const db = getDatabase();
+        const dbRef = ref(db, 'Users/' + currentUser.uid);
+        setUsername('');
+        onValue(
+            dbRef,
+            (snapshot) => {
+                setUsername(snapshot.val().duration);
+            },
+            {
+                onlyOnce: true,
+            }
+        );
+    }
+
+    function getUsernameData() {
         const db = getDatabase();
         const dbRef = ref(db, 'Users/' + currentUser.uid);
         setUsername('');
@@ -266,6 +286,8 @@ export function AuthProvider({ children }) {
         deleteUserData,
         homeworkValue,
         getUserData,
+        getUsernameData,
+        updateUserData,
     };
 
     return (

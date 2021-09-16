@@ -6,6 +6,7 @@ import * as AiIcons from 'react-icons/ai';
 import { SidebarData } from './SidebarData.js';
 import './Navbar.css';
 import { IconContext } from 'react-icons/lib';
+import * as FiIcons from 'react-icons/fi';
 
 import { getDatabase, ref, onValue } from 'firebase/database';
 
@@ -14,7 +15,7 @@ function Navbar() {
     const [sidebar, setSidebar] = useState(false);
 
     const showSidebar = () => setSidebar(!sidebar);
-    const { currentUser, logout, getUserData } = useAuth();
+    const { currentUser, logout } = useAuth();
     const history = useHistory();
     const isOnPage = history.location.pathname === '/login';
 
@@ -45,7 +46,7 @@ function Navbar() {
                             Awaree.
                         </Link>
 
-                        <h1 className="text-lg text-white">{username}</h1>
+                        <h1 className="text-lg text-white mr-20">{username}</h1>
                         <Link to="#" className="menu-bars">
                             <Falcons.FaBars onClick={showSidebar} />
                         </Link>
@@ -57,27 +58,34 @@ function Navbar() {
                                 className="nav-menu-items"
                                 onClick={showSidebar}
                             >
-                                <ul className="menu-items">
-                                    <li className="navbar-toggle">
-                                        <Link to="#" className="menu-bars">
-                                            <AiIcons.AiOutlineClose className="mt-10" />
-                                        </Link>
-                                    </li>
-
-                                    {SidebarData.map((item, index) => {
-                                        return (
-                                            <li
-                                                key={index}
-                                                className={item.cName}
+                                <li className="navbar-toggle">
+                                    <Link to="#" className="menu-bars ml-6">
+                                        <AiIcons.AiOutlineClose className="mt-10" />
+                                    </Link>
+                                </li>
+                                {SidebarData.map((item, index) => {
+                                    return (
+                                        <li key={index} className={item.cName}>
+                                            <Link
+                                                to={item.path}
+                                                className="flex items-center justify-center"
                                             >
-                                                <Link to={item.path}>
-                                                    {item.icon}
-                                                    <span>{item.title}</span>
-                                                </Link>
-                                            </li>
-                                        );
-                                    })}
-                                </ul>
+                                                {item.icon}
+                                                <span>{item.title}</span>
+                                            </Link>
+                                        </li>
+                                    );
+                                })}
+                                <li className="nav-text">
+                                    <Link
+                                        to="/"
+                                        onClick={logout}
+                                        className="flex items-center justify-center text-white"
+                                    >
+                                        <FiIcons.FiLogOut />
+                                        <span>Log out</span>
+                                    </Link>
+                                </li>
                             </ul>
                         </nav>
                     </div>

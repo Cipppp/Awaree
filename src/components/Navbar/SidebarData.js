@@ -31,10 +31,11 @@ export const SidebarData = [
         icon: <SiIcons.SiGoogleclassroom />,
         cName: 'nav-text',
     },
+
     {
-        title: 'Log out',
-        path: '/',
-        icon: <FiIcons.FiLogOut />,
+        title: 'Settings',
+        path: '/settings',
+        icon: <FiIcons.FiSettings />,
         cName: 'nav-text',
     },
 ];
