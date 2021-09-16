@@ -190,24 +190,18 @@ export function AuthProvider({ children }) {
         set(ref(db, 'Users/' + currentUser.uid), { username });
     }
 
-    function updateUserData(data) {
+    function updateUserData({ duration }) {
         const db = getDatabase();
-        update(ref(db, 'Users/' + currentUser.uid), data);
-    }
-
-    function getUserData() {
-        const db = getDatabase();
-        const dbRef = ref(db, 'Users/' + currentUser.uid);
-        setUsername('');
-        onValue(
-            dbRef,
-            (snapshot) => {
-                setUsername(snapshot.val().duration);
-            },
-            {
-                onlyOnce: true,
+        const durationRef = ref(db, 'Users/' + currentUser.uid);
+        var homeworkDuration;
+        onValue(durationRef, (snapshot) => {
+            if (snapshot.exists) {
+                homeworkDuration = snapshot.val().duration;
             }
-        );
+        });
+        duration += homeworkDuration;
+
+        update(ref(db, 'Users/' + currentUser.uid), { duration });
     }
 
     function getUsernameData() {
@@ -237,13 +231,7 @@ export function AuthProvider({ children }) {
             dbRef,
             (snapshot) => {
                 snapshot.forEach((childSnap) => {
-                    // for (var key in childSnap.val()) {
-                    //     setHomeworkValue([
-                    //         ...homeworkValue,
-                    //         childSnap.val()[key],
                     setHomeworkValue(childSnap.val());
-                    //     ]);
-                    // }
                 });
             },
             {
@@ -251,9 +239,6 @@ export function AuthProvider({ children }) {
             }
         );
     }
-
-    // TODO Read homework data
-    // ...
 
     useEffect(() => {
         const unsubscribe = firebaseAuth.auth().onAuthStateChanged((user) => {
@@ -285,7 +270,6 @@ export function AuthProvider({ children }) {
         displayUserData,
         deleteUserData,
         homeworkValue,
-        getUserData,
         getUsernameData,
         updateUserData,
     };

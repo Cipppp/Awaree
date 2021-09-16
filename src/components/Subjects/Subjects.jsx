@@ -20,12 +20,12 @@ function SubjectCard({
                             {credits}
                         </span>
                     </div>
-                    <div className="bg-snow w-full  text-center pl-4 pt-2 pr-4 pb-2 rounded-tr-3xl">
+                    <div className="bg-snow w-full text-center pt-2 pr-4 pb-2 rounded-tr-3xl">
                         <div className="inline-block w-full">
                             <p className="font-josefin text-jet text-sm flex justify-center items-center pt-2 font-bold">
                                 {subjectCategory}
                             </p>
-                            <p className="font-josefin text-jet text-sm flex justify-center items-center pt-2 font-bold">
+                            <p className="font-josefin text-jet text-sm flex justify-center items-center pt-2 ">
                                 {subjectName}
                             </p>
                         </div>
