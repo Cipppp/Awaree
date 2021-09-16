@@ -4,7 +4,7 @@ import tw from 'twin.macro';
 
 export const Button = styled.button.attrs({
     className:
-        'btn-auth hover:bg-green-300 hover:text-white focus:outline-none',
+        'btn-auth rounded-full hover:bg-green-300 hover:text-white focus:outline-none',
 })``;
 
 export const Background = styled.div.attrs({

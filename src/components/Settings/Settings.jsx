@@ -20,7 +20,6 @@ function Settings() {
         setError('');
         try {
             await logout();
-            // history.push('/login');
         } catch {
             setError('Failed to log out.');
         }
@@ -31,7 +30,7 @@ function Settings() {
             <div className="grid grid-rows-9 h-screen bg-snow">
                 <div className="row-span-3 flex justify-center items-end h-full">
                     <button
-                        className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
+                        className="btn-auth hover:bg-jet hover:text-snow focus:outline-none"
                         onClick={routeChangeUpdate}
                     >
                         Update profile
@@ -49,7 +48,7 @@ function Settings() {
                     className="row-span-3 flex justify-center items-start h-full"
                     onClick={handleLogout}
                 >
-                    <button className="btn-auth hover:bg-jet hover:text-link focus:outline-none">
+                    <button className="btn-auth hover:bg-jet hover:text-snow focus:outline-none">
                         Log out
                     </button>
                 </div>

@@ -69,7 +69,7 @@ function UpdateProfile() {
 
     return (
         <div className="grid md:grid-cols-2 items-center">
-            <div className="right-side bg-login h-screen flex justify-center items-center col-span-2">
+            <div className="right-side bg-snow h-screen flex justify-center items-center col-span-2">
                 <div className="font-josefin p-20 text-2xl text-jet w-6/12">
                     <h1 className="text-2xl font-josefin font-bold flex justify-center pt-10">
                         Update Profile
@@ -83,7 +83,7 @@ function UpdateProfile() {
                             autoFocus
                             required
                             defaultValue={currentUser.email}
-                            className="w-full p-5 focus:outline-none font-bold tracking-wider rounded-full bg-form focus:border-snow text-xl border-4 border-jet"
+                            className="w-full p-4 focus:outline-none font-bold tracking-wider rounded-lg bg-snow focus:border-jet text-xl border-4 border-jet"
                             ref={emailRef}
                         />
                         {/* Password  */}
@@ -91,14 +91,14 @@ function UpdateProfile() {
                         <input
                             type="password"
                             placeholder="Leave blank to keep the same"
-                            className="w-full p-5 placeholder-white leading-3 focus:outline-none font-bold tracking-wider rounded-full bg-form focus:border-snow text-xl border-4 border-jet"
+                            className="w-full p-4 placeholder-jet leading-3 focus:outline-none font-bold tracking-wider rounded-lg bg-snow focus:border-jet text-xl border-4 border-jet"
                             ref={passwordRef}
                         />
                         <h1 className="text-xl pt-2">Password confirmation</h1>
                         <input
                             type="password"
                             placeholder="Leave blank to keep the same"
-                            className="w-full p-5 placeholder-snow leading-3 focus:outline-none font-bold tracking-wider rounded-full bg-form focus:border-snow text-xl border-4 border-jet"
+                            className="w-full p-4 placeholder-jet leading-3 focus:outline-none font-bold tracking-wider rounded-lg bg-snow focus:border-jet text-xl border-4 border-jet"
                             ref={passwordConfirmRef}
                         />
                         {error && (
@@ -110,7 +110,7 @@ function UpdateProfile() {
                         {/* Button  */}
                         <div className="btnContainer grid grid-rows-2 place-items-center">
                             <>
-                                <button className="btn-auth hover:bg-jet hover:text-link focus:outline-none">
+                                <button className="btn-auth hover:bg-jet hover:text-snow focus:outline-none">
                                     Update
                                 </button>
 
