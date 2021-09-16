@@ -6,6 +6,30 @@ import { Button } from '../componentStyles';
 import { ReactComponent as AddImg } from '../../assets/plus.svg';
 
 function HomeworkCard({ classRef, difficulty, priority, duration }) {
+    const minutes = duration - 60 * Math.floor(duration / 60);
+
+    const hours = Math.floor(duration / 60);
+    const [difficultyVeryEasy, setDifficultyVeryEasy] = useState(false);
+    const [difficultyEasy, setDifficultyEasy] = useState(false);
+    const [difficultyMedium, setDifficultyMedium] = useState(false);
+    const [difficultyHard, setDifficultyHard] = useState(false);
+
+    const checkDifficulty = () => {
+        if (duration <= 30) {
+            setDifficultyVeryEasy(true);
+        } else if (duration <= 90) {
+            setDifficultyEasy(true);
+        } else if (duration > 90 && duration <= 180) {
+            setDifficultyMedium(true);
+        } else if (duration > 180) {
+            setDifficultyHard(true);
+        }
+    };
+
+    useEffect(() => {
+        checkDifficulty();
+    });
+
     return (
         <div className="sm:flex-col md:grid md:grid-rows-2 sm:m-4 md:m-10 rounded-3xl shadow-xl">
             <div className="w-full h-full flex items-center justify-center">
@@ -14,22 +38,63 @@ function HomeworkCard({ classRef, difficulty, priority, duration }) {
                         <h2 className="text-center sm:text-sm font-josefin font-bold md:text-lg text-black ">
                             {classRef} homework
                         </h2>
-                        <p className="font-josefin text-sm text-cardBullet pb-4">
+                        <p
+                            className={`${
+                                difficulty === 'Pice of cake'
+                                    ? 'text-veryEasy'
+                                    : difficulty === 'Easy'
+                                    ? 'text-easy'
+                                    : difficulty === 'Medium'
+                                    ? 'text-medium'
+                                    : difficulty === 'Hard'
+                                    ? 'text-hard'
+                                    : ''
+                            } font-josefin text-sm font-bold pb-4`}
+                        >
                             Difficulty: {difficulty}
                         </p>
                     </div>
                     <div className="bg-snow  w-full items-center justify-center  pl-4 pt-2 pr-4 pb-2 flex rounded-tr-3xl">
                         <div className="inline-block w-full">
-                            <span className="h-6 bg-login rounded-3xl w-full flex ml-0"></span>
-                            <p className="font-josefin text-login text-sm flex justify-center items-center pt-2 font-bold">
-                                {duration / 60 === 1
-                                    ? '1 hour'
-                                    : duration / 60 < 1
+                            <span
+                                className={`${
+                                    difficultyVeryEasy
+                                        ? 'bg-veryEasy'
+                                        : difficultyEasy
+                                        ? 'bg-easy'
+                                        : difficultyMedium
+                                        ? 'bg-medium'
+                                        : difficultyHard
+                                        ? 'bg-hard'
+                                        : ''
+                                } h-6 rounded-3xl w-full flex ml-0`}
+                            ></span>
+                            <p
+                                className={`${
+                                    difficultyVeryEasy
+                                        ? 'text-veryEasy'
+                                        : difficultyEasy
+                                        ? 'text-easy'
+                                        : difficultyMedium
+                                        ? 'text-medium'
+                                        : difficultyHard
+                                        ? 'text-hard'
+                                        : ''
+                                } font-josefin text-sm flex justify-center items-center pt-2 font-bold`}
+                            >
+                                {duration / 60 < 1
                                     ? `${duration} minutes`
-                                    : `${Math.round(duration / 60)} hour(s) ${
-                                          duration -
-                                          60 * Math.round(duration / 60)
-                                      } minutes`}{' '}
+                                    : hours < 2
+                                    ? `${hours} hour ${
+                                          minutes > 0
+                                              ? `${minutes} minutes`
+                                              : ''
+                                      }`
+                                    : `${hours} hours ${
+                                          minutes > 0
+                                              ? `${minutes} minutes`
+                                              : ''
+                                      }`}
                             </p>
                         </div>
                     </div>
@@ -48,26 +113,24 @@ function HomeworkCard({ classRef, difficulty, priority, duration }) {
                 <h1 className="flex pl-20 pr-20 pb-4 justify-between">
                     <span
                         className={`${
-                            priority === 'Low'
-                                ? 'bg-green-600'
-                                : 'bg-cardBullet'
-                        } rounded-3xl w-10 h-10 text-base pb-1 flex justify-center items-center text-josefin`}
+                            priority === 'Low' ? 'bg-easy' : 'bg-cardBullet'
+                        } rounded-3xl w-10 h-10 text-base flex justify-center items-center text-josefin`}
                     >
                         L
                     </span>
                     <span
                         className={`${
                             priority === 'Medium'
-                                ? 'bg-orange-600'
+                                ? 'bg-medium'
                                 : 'bg-cardBullet'
-                        } rounded-3xl w-10 h-10 text-base pb-1 flex justify-center items-center text-josefin`}
+                        } rounded-3xl w-10 h-10 text-base flex justify-center items-center text-josefin`}
                     >
                         M
                     </span>
                     <span
                         className={`${
-                            priority === 'High' ? 'bg-red-600' : 'bg-cardBullet'
-                        } rounded-3xl w-10 h-10 text-base pb-1 flex justify-center items-center text-josefin`}
+                            priority === 'High' ? 'bg-hard' : 'bg-cardBullet'
+                        } rounded-3xl w-10 h-10 text-base flex justify-center items-center text-josefin`}
                     >
                         H
                     </span>

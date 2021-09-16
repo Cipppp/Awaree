@@ -11,6 +11,8 @@ import {
 import { useAuth, currentUser } from '../contexts/AuthContext';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { getMessaging, getToken } from 'firebase/messaging';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Modal({ showModal, setShowModal }) {
     const modalRef = useRef();
@@ -22,13 +24,28 @@ export default function Modal({ showModal, setShowModal }) {
     const { writeHomeworkData, currentUser, displayUserData, updateUserData } =
         useAuth();
     const [toggle, setToggle] = useState(false);
+    const customId = 'b6d2a12c-088a-43f4-911b-bf82e7497854';
+
+    const notify = (message) => {
+        toast.success(message, {
+            toastId: customId,
+            position: 'top-center',
+            closeButton: false,
+            hideProgressBar: true,
+            closeOnClick: true,
+            draggablePercent: 50,
+            pauseOnHover: false,
+            draggable: true,
+            theme: 'colored',
+        });
+    };
 
     const openModal = () => {
         setShowModal((state) => !state);
     };
 
     const handleOnChange = (e) => {
-        setDuration(e.target.value);
+        setDuration(parseInt(e.target.value));
         setToggle(true);
     };
 
@@ -66,6 +83,7 @@ export default function Modal({ showModal, setShowModal }) {
         try {
             setError('');
             setShowModal(false);
+            parseInt(duration);
             writeHomeworkData({
                 // userId: currentUser.uid,
                 classRef,
@@ -73,6 +91,8 @@ export default function Modal({ showModal, setShowModal }) {
                 priority,
                 duration,
             });
+            notify('Homework added successfully!');
+            parseInt(duration);
             updateUserData({ duration });
             displayUserData();
         } catch {
@@ -161,7 +181,7 @@ export default function Modal({ showModal, setShowModal }) {
                                                 min="0"
                                                 max="400"
                                                 value={duration}
-                                                steps="1"
+                                                step="2"
                                                 onChange={handleOnChange}
                                                 onBlur={handleOnBlur}
                                             />
