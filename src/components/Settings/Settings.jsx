@@ -28,7 +28,7 @@ function Settings() {
 
     return (
         <>
-            <div className="grid grid-rows-9 h-screen bg-form">
+            <div className="grid grid-rows-9 h-screen bg-snow">
                 <div className="row-span-3 flex justify-center items-end h-full">
                     <button
                         className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
