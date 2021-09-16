@@ -1,14 +1,16 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { ReactComponent as LoginImg } from '../../assets/login.svg';
 import { ReactComponent as GithubImg } from '../../assets/github.svg';
 import { ReactComponent as GoogleImg } from '../../assets/google.svg';
 import { Link, useHistory } from 'react-router-dom';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
 function Login() {
     const emailRef = useRef();
     const passwordRef = useRef();
-    const { login, GithubLogin, GoogleLogin } = useAuth();
+    const { login, GithubLogin, GoogleLogin, currentUser, writeUserData } =
+        useAuth();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
@@ -20,12 +22,38 @@ function Login() {
             setError('');
             setLoading(true);
             await login(emailRef.current.value, passwordRef.current.value);
+
             history.push('/status');
         } catch {
             setError('Failed to login.');
         }
         setLoading(false);
     }
+
+    const check = () => {
+        var duration = '';
+        try {
+            const db = getDatabase();
+            const durationRef = ref(db, 'Users/' + currentUser.uid);
+            onValue(durationRef, (snapshot) => {
+                duration = snapshot.val().duration;
+            })
+                .then({
+                    //
+                })
+                .catch({
+                    //;
+                });
+        } catch {
+            if (currentUser) {
+                writeUserData({ username: '', duration });
+            }
+        }
+    };
+
+    useEffect(() => {
+        check();
+    }, [check]);
 
     return (
         <div className="grid md:grid-cols-2 items-center">

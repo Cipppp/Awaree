@@ -7,7 +7,7 @@ import { SidebarData } from './SidebarData.js';
 import './Navbar.css';
 import { IconContext } from 'react-icons/lib';
 import * as FiIcons from 'react-icons/fi';
-
+import firebaseAuth from '../../firebase';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
 function Navbar() {
@@ -19,9 +19,9 @@ function Navbar() {
     const history = useHistory();
     const isOnPage = history.location.pathname === '/login';
 
-    const [username, setUsername] = useState('Loading...');
+    const [username, setUsername] = useState('');
 
-    useEffect(() => {
+    const check = () => {
         if (!currentUser) {
             Redirect('/login');
         } else {
@@ -32,7 +32,11 @@ function Navbar() {
                 setUsername(data);
             });
         }
-    }, []);
+    };
+
+    useEffect(() => {
+        check();
+    }, [check]);
 
     return (
         <>
@@ -41,7 +45,7 @@ function Navbar() {
                     <div className="navbar flex justify-between pl-10 pr-10 shadow-xs">
                         <Link
                             to="/"
-                            className="text-white font-josefin text-3xl flex justify-"
+                            className="text-white font-bold font-josefin text-3xl flex justify-"
                         >
                             Awaree.
                         </Link>
