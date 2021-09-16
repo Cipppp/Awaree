@@ -11,3 +11,5 @@ export { default as Settings } from './Settings/Settings';
 export { default as Modal } from './Modal/Modal';
 export { default as ProgressBar } from './ProgressBar/ProgressBar';
 export { default as PageNotFound } from './PageNotFound/PageNotFound';
+export { default as Subjects } from './Subjects/Subjects';
+export { default as Homeworks } from './Homeworks/Homeworks';
