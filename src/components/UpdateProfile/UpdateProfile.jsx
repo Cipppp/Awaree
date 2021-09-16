@@ -54,7 +54,9 @@ function UpdateProfile() {
         Promise.all(promises)
             .then(() => {
                 if (!error) {
-                    notify(message);
+                    if (message) {
+                        notify(message);
+                    }
                     history.push('/settings');
                 }
             })
@@ -110,7 +112,7 @@ function UpdateProfile() {
                         {/* Button  */}
                         <div className="btnContainer grid grid-rows-2 place-items-center">
                             <>
-                                <button className="btn-auth hover:bg-jet hover:text-snow focus:outline-none">
+                                <button className="btn-auth hover:bg-jet hover:text-snow focus:outline-none rounded-3xl">
                                     Update
                                 </button>
 

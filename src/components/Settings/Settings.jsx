@@ -11,10 +11,6 @@ function Settings() {
         let path = '/update-profile';
         history.push(path);
     };
-    const routeChangeOut = () => {
-        let path = '/login';
-        history.push(path);
-    };
 
     async function handleLogout() {
         setError('');
@@ -44,11 +40,11 @@ function Settings() {
                         Delete user
                     </button>
                 </div>
-                <div
-                    className="row-span-3 flex justify-center items-start h-full"
-                    onClick={handleLogout}
-                >
-                    <button className="btn-auth hover:bg-jet hover:text-snow focus:outline-none">
+                <div className="row-span-3 flex justify-center items-start h-full">
+                    <button
+                        className="btn-auth hover:bg-jet hover:text-snow focus:outline-none"
+                        onClick={handleLogout}
+                    >
                         Log out
                     </button>
                 </div>
