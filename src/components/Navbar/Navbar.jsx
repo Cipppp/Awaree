@@ -71,7 +71,9 @@ function Navbar() {
                                                 className="flex items-center justify-center"
                                             >
                                                 {item.icon}
-                                                <span>{item.title}</span>
+                                                <span className="nav-span">
+                                                    {item.title}
+                                                </span>
                                             </Link>
                                         </li>
                                     );
@@ -83,7 +85,9 @@ function Navbar() {
                                         className="flex items-center justify-center text-white"
                                     >
                                         <FiIcons.FiLogOut />
-                                        <span>Log out</span>
+                                        <span className="nav-span">
+                                            Log out
+                                        </span>
                                     </Link>
                                 </li>
                             </ul>
