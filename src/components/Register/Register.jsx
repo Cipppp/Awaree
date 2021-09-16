@@ -16,21 +16,30 @@ function Register() {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-            return setError('Password do not match');
-        }
+        try {
+            if (
+                passwordRef.current.value !== passwordConfirmRef.current.value
+            ) {
+                return setError('Password do not match');
+            }
 
-        setError('');
-        setLoading(true);
-        await signup(emailRef.current.value, passwordRef.current.value);
-        history.push('/intro');
+            setError('');
+            setLoading(true);
+            await signup(emailRef.current.value, passwordRef.current.value);
+            // sendEmailVerification(auth.currentUser).then(() => {
+            //     console.log('Email sent');
+            // });
+            history.push('/intro');
+        } catch {
+            setError('Failed to create account.');
+        }
         setLoading(false);
     }
 
     // Check for user uid
     const check = () => {
         if (currentUser) {
-            writeUserData(usernameRef.current.value);
+            writeUserData({ username: usernameRef.current.value, duration: 0 });
         }
     };
 
@@ -54,7 +63,7 @@ function Register() {
                                 {/* Email  */}
                                 <h1 className="text-xl">Email</h1>
                                 <input
-                                    type="text"
+                                    type="email"
                                     autoFocus
                                     required
                                     className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg text-xl border-4 border-jet"

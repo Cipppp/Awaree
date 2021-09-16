@@ -7,7 +7,7 @@ import { ReactComponent as AddImg } from '../../assets/plus.svg';
 
 function HomeworkCard({ classRef, difficulty, priority, duration }) {
     const minutes = duration - 60 * Math.floor(duration / 60);
-
+    const width = Math.log(duration) * 28;
     const hours = Math.floor(duration / 60);
     const [difficultyVeryEasy, setDifficultyVeryEasy] = useState(false);
     const [difficultyEasy, setDifficultyEasy] = useState(false);
@@ -54,7 +54,7 @@ function HomeworkCard({ classRef, difficulty, priority, duration }) {
                             Difficulty: {difficulty}
                         </p>
                     </div>
-                    <div className="bg-snow  w-full items-center justify-center  pl-4 pt-2 pr-4 pb-2 flex rounded-tr-3xl">
+                    <div className="bg-snow w-full items-center justify-center pl-4 pt-2 pr-4 pb-2 flex rounded-tr-3xl">
                         <div className="inline-block w-full">
                             <span
                                 className={`${
@@ -67,7 +67,11 @@ function HomeworkCard({ classRef, difficulty, priority, duration }) {
                                         : difficultyHard
                                         ? 'bg-hard'
                                         : ''
-                                } h-6 rounded-3xl w-full flex ml-0`}
+                                } h-6 rounded-3xl flex ml-0`}
+                                style={{
+                                    width: `${width}px`,
+                                    maxWidth: '168px',
+                                }}
                             ></span>
                             <p
                                 className={`${

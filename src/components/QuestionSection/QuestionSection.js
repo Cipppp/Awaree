@@ -6,6 +6,15 @@ import 'firebase/firestore';
 import { getDatabase, set, ref, update } from 'firebase/database';
 import { v4 as uuidv4 } from 'uuid';
 
+// const AnswerComponent = () => {
+//     <select value={classRef} onChange={(e) => setClassRef(e.target.value)}>
+//         <option value="Mathematics">Mathematics</option>
+//         <option value="Physics">Physics</option>
+//         <option value="English">English</option>
+//         <option value="C">C</option>
+//     </select>;
+// };
+
 const QuestionSection = ({ rightSection, text, id, done }) => {
     const [profile, setProfile] = useState('');
     const [series, setSeries] = useState('');
@@ -83,6 +92,8 @@ const QuestionSection = ({ rightSection, text, id, done }) => {
                             onChange={handleOnChange}
                             onKeyPress={keyPressed}
                         />
+
+                        {/* <AnswerComponent /> */}
 
                         {done ? (
                             <button

@@ -35,9 +35,6 @@ export function AuthProvider({ children }) {
     const [username, setUsername] = useState('');
     const history = useHistory();
 
-    //! Connect to cloud firestore
-    // const refFirestore = firebaseAuth.firestore().collection('answers');
-
     const homeworkId = uuidv4();
     const [homeworkValue, setHomeworkValue] = useState([]);
     const [message, setMessage] = useState('');
@@ -50,9 +47,7 @@ export function AuthProvider({ children }) {
         return firebaseAuth
             .auth()
             .createUserWithEmailAndPassword(email, password)
-            .then(() => {
-                // ...
-            });
+            .then((userCredential) => {});
     }
 
     function login(email, password) {
@@ -120,52 +115,6 @@ export function AuthProvider({ children }) {
             });
     }
 
-    //! Cloud firebase
-    // function getAnswers() {
-    //     refFirestore.onSnapshot((querySnapshot) => {
-    //         const items = [];
-    //         querySnapshot.forEach((doc) => {
-    //             items.push(doc.data());
-    //         });
-    //         // setAnswers(items)
-    //         return items;
-    //     });
-    // }
-
-    // function getItems() {
-    //     setLoading(true);
-    //orderBy('')
-    // refFirestore
-    //     .where('id', '==', currentUser.uid)
-    //     .onSnapshot((querySnapshot) => {
-    //         const items = [];
-    //         querySnapshot.forEach((doc) => {
-    //             items.push(doc.data());
-    //         });
-    // setItems(items)
-    //             setLoading(false);
-    //             return items;
-    //         });
-    // }
-
-    // function addAnswer(newAnswer) {
-    //     refFirestore
-    //         .doc(newAnswer.id)
-    //         .set(newAnswer)
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // }
-
-    // function editAnswer(answer) {
-    //     refFirestore
-    //         .doc(answer.id)
-    //         .update(answer)
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // }
-
     //! Realtime database
     function updateAnswerData(answer) {
         const db = getDatabase();
@@ -185,9 +134,9 @@ export function AuthProvider({ children }) {
         set(newPostRef, homework);
     }
 
-    function writeUserData(username) {
+    function writeUserData({ username, duration }) {
         const db = getDatabase();
-        set(ref(db, 'Users/' + currentUser.uid), { username, duration: 0 });
+        set(ref(db, 'Users/' + currentUser.uid), { username, duration });
     }
 
     function updateUserData({ duration }) {

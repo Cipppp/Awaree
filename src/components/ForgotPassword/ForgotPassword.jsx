@@ -74,7 +74,7 @@ function ForgotPassword() {
                                             </p>
                                         )}
                                         {message && (
-                                            <p className="text-green-300 font-josefin">
+                                            <p className="text-snow flex justify-center items-center text-center font-josefin">
                                                 {message}
                                             </p>
                                         )}
