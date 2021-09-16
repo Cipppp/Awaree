@@ -187,7 +187,7 @@ export function AuthProvider({ children }) {
 
     function writeUserData(username) {
         const db = getDatabase();
-        set(ref(db, 'Users/' + currentUser.uid), { username });
+        set(ref(db, 'Users/' + currentUser.uid), { username, duration: 0 });
     }
 
     function updateUserData({ duration }) {

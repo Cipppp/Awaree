@@ -23,12 +23,15 @@ function Status() {
 
     return (
         <div className="overflow-hidden">
-            {console.log(duration)}
             {/* First slide */}
             <div className="bg-snow h-screen w-screen flex justify-center items-center">
                 <div className="w-9/12">
                     <BarChart
-                        dataset={[8, Math.round(duration / 60), 5]}
+                        dataset={[
+                            8,
+                            Math.round(duration / 60),
+                            112 - Math.round(duration / 60),
+                        ]}
                         colors={['#353535', '#F5796D', '#2A9D8F']}
                         sectionLabel={['School', 'Homework', 'Freetime']}
                     />
