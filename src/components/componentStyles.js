@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 
 export const Button = styled.button.attrs({
-    className:
-        'btn-auth rounded-full hover:bg-green-300 hover:text-white focus:outline-none',
+    className: 'btn-add hover:bg-green-300 hover:text-white focus:outline-none',
 })``;
 
 export const Background = styled.div.attrs({
@@ -14,7 +13,7 @@ export const Background = styled.div.attrs({
 
 export const ModalWrapper = styled.div.attrs({
     className:
-        'shadow-md bg-snow text-jet grid grid-cols-2 relative z-10 rounded-md',
+        'shadow-md bg-snow text-jet flex justify-center items-center md:grid md:grid-cols-2 relative z-10 rounded-md',
 })`
     width: 800px;
     height: 500px;
