@@ -62,7 +62,7 @@ function Login() {
                     <LoginImg className="lg:p-20 xl:p-16" />
                 </div>
             </div>
-            <div className="h-full flex justify-center items-center sm:bg-easy md:bg-veryEasy lg:bg-labsBullet xl:bg-medium ">
+            <div className="h-full flex justify-center items-center bg-login">
                 <div className="flex w-full justify-center">
                     <div className="w-full mt-20 md:flex md:justify-center md:items-center">
                         <div className="w-screen md:w-8/12 justify-center items-center font-josefin p-8 text-sm sm:text-base md:text-lg xl:text-xl text-jet">
