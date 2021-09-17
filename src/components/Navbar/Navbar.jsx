@@ -56,13 +56,15 @@ function Navbar() {
                         </Link>
 
                         <nav
-                            className={sidebar ? 'nav-menu active' : 'nav-menu'}
+                            className={
+                                sidebar ? 'nav-menu active ' : 'nav-menu'
+                            }
                         >
                             <ul
                                 className="nav-menu-items"
                                 onClick={showSidebar}
                             >
-                                <li className="navbar-toggle">
+                                <li className="navbar-toggle ">
                                     <Link to="#" className="menu-bars ml-6">
                                         <AiIcons.AiOutlineClose className="mt-10" />
                                     </Link>
