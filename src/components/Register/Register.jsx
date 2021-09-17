@@ -48,56 +48,65 @@ function Register() {
     }, [check]);
 
     return (
-        <div className="grid md:grid-cols-2 items-center overflow-hidden">
-            <div className="left-side h-screen flex justify-center items-center bg-snow order-last">
+        <div className="lg:grid lg:grid-cols-2 items-center h-screen overflow-x-hidden">
+            <div className="hidden lg:flex left-side h-screen justify-center items-center bg-snow order-last">
                 <div>
                     <RegisterImg className="ml-20 p-10 w-10/12" />
                 </div>
             </div>
 
-            <div className="right-side bg-login h-full flex justify-center items-center">
+            <div className="h-full flex justify-center items-center sm:bg-easy md:bg-veryEasy lg:bg-labsBullet xl:bg-medium">
                 <div className="flex w-full justify-center">
-                    <div className="login w-7/12 mt-20">
-                        <div className="loginContainer font-josefin p-8 text-2xl text-jet">
+                    <div className="w-full mt-20 md:flex md:justify-center md:items-center">
+                        <div className="w-screen md:w-8/12 justify-center items-center font-josefin p-8 text-sm sm:text-base md:text-lg xl:text-xl text-jet">
+                            <h1 className="font-josefin font-bold flex justify-center">
+                                Register
+                            </h1>
                             <form onSubmit={handleSubmit} action="submit">
                                 {/* Email  */}
-                                <h1 className="text-xl">Email</h1>
+                                <h1 className="text-sm sm:text-base md:text-lg xl:text-xl">
+                                    Email
+                                </h1>
                                 <input
                                     type="email"
                                     autoFocus
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg text-xl border-4 border-jet"
+                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg text-sm sm:text-base md:text-lg xl:text-xl border-4 border-jet"
                                     ref={emailRef}
                                 />
                                 {/* Username  */}
-                                <h1 className="text-xl">Username</h1>
+                                <h1 className="text-sm sm:text-base md:text-lg xl:text-xl">
+                                    Username
+                                </h1>
                                 <input
                                     type="text"
                                     autoFocus
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg text-xl border-4 border-jet"
+                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg text-sm sm:text-base md:text-lg xl:text-xl border-4 border-jet"
                                     ref={usernameRef}
                                 />
                                 {/* Password  */}
-                                <h1 className="text-xl pt-2">Password</h1>
+                                <h1 className="text-sm sm:text-base md:text-lg xl:text-xl pt-2">
+                                    Password
+                                </h1>
                                 <input
                                     type="password"
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg text-xl border-4 border-jet"
+                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg text-sm sm:text-base md:text-lg xl:text-xl border-4 border-jet"
                                     ref={passwordRef}
                                 />
-                                <h1 className="text-xl pt-2">
+                                <h1 className="text-sm sm:text-base md:text-lg xl:text-xl pt-2">
                                     Password confirmation
                                 </h1>
                                 <input
                                     type="password"
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg text-xl border-4 border-jet"
+                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg text-sm sm:text-base md:text-lg xl:text-xl border-4 border-jet"
                                     ref={passwordConfirmRef}
                                 />
 
                                 {error && (
-                                    <p className="text-red-700 text-xl flex justify-center mt-2 font-josefin">
+                                    <p className="text-red-700 text-sm sm:text-base md:text-lg xl:text-xl flex justify-center mt-2 font-josefin">
                                         {error}
                                     </p>
                                 )}
@@ -106,15 +115,15 @@ function Register() {
                                     <>
                                         <button
                                             disabled={loading}
-                                            className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
+                                            className="btn-auth-login hover:bg-jet hover:text-link focus:outline-none"
                                         >
                                             Register
                                         </button>
-                                        <p className="text-xl">
+                                        <p className="text-sm sm:text-base md:text-lg xl:text-xl">
                                             Already have an account?
                                             <Link
                                                 to="/login"
-                                                className="pl-2 text-xl cursor-pointer text-snow"
+                                                className="pl-2 text-sm sm:text-base md:text-lg xl:text-xl cursor-pointer text-snow"
                                             >
                                                 Log in
                                             </Link>

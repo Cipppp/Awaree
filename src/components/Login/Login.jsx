@@ -56,39 +56,39 @@ function Login() {
     }, [check]);
 
     return (
-        <div className="grid md:grid-cols-2 items-center">
-            <div className="left-side h-screen flex justify-center items-center bg-snow">
-                <div>
-                    <LoginImg className="p-16" />
+        <div className="lg:grid lg:grid-cols-2 items-center h-screen overflow-x-hidden">
+            <div className="hidden lg:flex left-side h-screen justify-center items-center bg-snow">
+                <div className="">
+                    <LoginImg className="lg:p-20 xl:p-16" />
                 </div>
             </div>
-            <div className="right-side bg-login h-full flex justify-center items-center">
+            <div className="h-full flex justify-center items-center sm:bg-easy md:bg-veryEasy lg:bg-labsBullet xl:bg-medium ">
                 <div className="flex w-full justify-center">
-                    <div className="login w-7/12 mt-20">
-                        <div className="loginContainer font-josefin p-8 text-2xl text-jet">
-                            <h1 className="text-2xl font-josefin font-bold flex justify-center">
+                    <div className="w-full mt-20 md:flex md:justify-center md:items-center">
+                        <div className="w-screen md:w-8/12 justify-center items-center font-josefin p-8 text-sm sm:text-base md:text-lg xl:text-xl text-jet">
+                            <h1 className="font-josefin font-bold flex justify-center">
                                 Login
                             </h1>
                             <form onSubmit={handleSubmit} action="submit">
                                 {/* Email  */}
-                                <h1 className="text-xl">Email</h1>
+                                <h1 className="">Email</h1>
                                 <input
                                     type="text"
                                     autoFocus
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg text-xl border-4 border-jet"
+                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg  border-4 border-jet"
                                     ref={emailRef}
                                 />
                                 {/* Password  */}
-                                <h1 className="text-xl pt-2">Password</h1>
+                                <h1 className=" pt-2">Password</h1>
                                 <input
                                     type="password"
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg text-xl border-4 border-jet"
+                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg  border-4 border-jet"
                                     ref={passwordRef}
                                 />
                                 {error && (
-                                    <p className="text-red-700 text-xl flex justify-center mt-2 font-josefin">
+                                    <p className="text-red-700  flex justify-center mt-2 font-josefin">
                                         {error}
                                     </p>
                                 )}
@@ -96,13 +96,13 @@ function Login() {
                                 <div className="btnContainer flex place-items-start justify-center mb-5">
                                     <button
                                         disabled={loading}
-                                        className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
+                                        className="btn-auth-login text-sm sm:text-base md:text-lg xl:text-xl hover:bg-jet hover:text-link focus:outline-none"
                                     >
                                         Log in
                                     </button>
                                 </div>
                                 <>
-                                    <p className="text-xl">
+                                    <p className="">
                                         Don't have an account?
                                         <Link
                                             to="/register"
@@ -114,7 +114,7 @@ function Login() {
                                     <div>
                                         <Link
                                             to="/forgot-password"
-                                            className="text-xl"
+                                            className=""
                                         >
                                             Forgot password?
                                         </Link>
@@ -126,7 +126,7 @@ function Login() {
                                 onClick={GithubLogin}
                                 className="btn-auth-with hover:bg-jet hover:text-link focus:outline-none "
                             >
-                                <GithubImg className="w-8 mr-4" />
+                                <GithubImg className="w-8 mr-4 text-sm sm:text-base md:text-lg xl:text-xl" />
                                 Continue with Github
                             </button>{' '}
                             <button
@@ -134,7 +134,7 @@ function Login() {
                                 onClick={GoogleLogin}
                                 className="btn-auth-with hover:bg-jet hover:text-link focus:outline-none "
                             >
-                                <GoogleImg className="w-8 mr-4 pt-2 mb-2" />
+                                <GoogleImg className="w-8 mr-4 pt-2 mb-2 text-sm sm:text-base md:text-lg xl:text-xl" />
                                 Continue with Google
                             </button>
                         </div>

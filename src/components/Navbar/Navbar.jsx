@@ -25,12 +25,21 @@ function Navbar() {
         if (!currentUser) {
             Redirect('/login');
         } else {
-            const db = getDatabase();
-            const usernameRef = ref(db, 'Users/' + currentUser.uid);
-            onValue(usernameRef, (snapshot) => {
-                const data = snapshot.val().username;
-                setUsername(data);
-            });
+            try {
+                const db = getDatabase();
+                const usernameRef = ref(db, 'Users/' + currentUser.uid);
+                onValue(usernameRef, (snapshot) => {
+                    try {
+                        const data = snapshot.val().username;
+                        setUsername(data);
+                    } catch {
+                        history.push('/login');
+                    }
+                });
+            } catch {
+                logout();
+                Redirect('/login');
+            }
         }
     };
 

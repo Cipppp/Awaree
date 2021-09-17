@@ -26,29 +26,31 @@ function ForgotPassword() {
     }
 
     return (
-        <div className="grid md:grid-cols-2 items-center">
-            <div className="left-side h-screen flex justify-center items-center bg-snow">
+        <div className="lg:grid lg:grid-cols-2 items-center h-screen overflow-x-hidden">
+            <div className="hidden lg:flex left-side h-screen justify-center items-center bg-snow">
                 <div>
                     <PasswordImg className="p-20" />
                 </div>
             </div>
 
-            <div className="right-side bg-login h-full flex justify-center items-center">
+            <div className="h-full flex justify-center items-center sm:bg-easy md:bg-veryEasy lg:bg-labsBullet xl:bg-medium ">
                 <div className="flex w-full justify-center">
-                    <div className="login w-7/12 mt-20">
-                        <div className="loginContainer font-josefin p-8 text-2xl text-jet">
-                            <h1 className="text-2xl font-josefin font-bold flex justify-center">
+                    <div className="w-full mt-20 md:flex md:justify-center md:items-center">
+                        <div className="w-screen md:w-8/12 justify-center items-center font-josefin p-8 text-sm sm:text-base md:text-lg xl:text-xl text-jet">
+                            <h1 className="font-josefin font-bold flex justify-center">
                                 Password Reset
                             </h1>
 
                             <form onSubmit={handleSubmit} action="submit">
                                 {/* Email  */}
-                                <h1 className="text-xl pt-2">Email</h1>
+                                <h1 className="text-sm sm:text-base md:text-lg xl:text-xl pt-2">
+                                    Email
+                                </h1>
                                 <input
                                     type="text"
                                     autoFocus
                                     required
-                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-full text-xl border-4 border-jet"
+                                    className="bg-form w-full p-3 focus:outline-none focus:border-snow rounded-lg text-sm sm:text-base md:text-lg xl:text-xl border-4 border-jet"
                                     ref={emailRef}
                                 />
 
@@ -56,7 +58,7 @@ function ForgotPassword() {
                                     <>
                                         <button
                                             disabled={loading}
-                                            className="btn-auth hover:bg-jet hover:text-link focus:outline-none"
+                                            className="btn-auth-login hover:bg-jet hover:text-link focus:outline-none"
                                         >
                                             Reset Passowrd
                                         </button>
