@@ -111,7 +111,7 @@ export default function Modal({ showModal, setShowModal }) {
                 <Background ref={modalRef} onClick={closeModal}>
                     <animated.div style={animation}>
                         <ModalWrapper showModal={showModal}>
-                            <AddFile className="w-full h-full p-10" />
+                            <AddFile className="w-full h-full p-10 hidden md:block" />
                             <ModalContent>
                                 <h1 className="text-2xl font-josefin font-bold flex justify-center">
                                     Add new homework:

@@ -12,15 +12,15 @@ function SubjectCard({
     subjectName,
 }) {
     return (
-        <div className="sm:flex-col md:grid md:grid-rows-2 sm:m-4 md:m-10 rounded-3xl shadow-xl">
-            <div className="w-full h-full flex items-center justify-center">
+        <div className="bg-card sm:flex-col md:grid md:grid-rows-2 rounded-3xl shadow-xl m-4 ">
+            <div className="w-full h-auto flex items-center justify-center">
                 <div className="grid grid-cols-2  h-full w-full place-items-center">
-                    <div className="bg-snow items-center  pl-4 pr-4 pt-2 pb-2 justify-center flex rounded-tl-3xl">
+                    <div className="bg-snow items-center pl-4 pr-4 pt-2 pb-2 justify-center flex w-full h-full rounded-tl-3xl">
                         <span className="h-16 w-16 bg-login rounded-3xl  flex  items-center justify-center ml-0">
                             {credits}
                         </span>
                     </div>
-                    <div className="bg-snow w-full text-center pt-2 pr-4 pb-2 rounded-tr-3xl">
+                    <div className="bg-snow text-center pt-2 pr-4 pb-2 rounded-tr-3xl w-full h-full flex justify-center items-center">
                         <div className="inline-block w-full">
                             <p className="font-josefin text-jet text-sm flex justify-center items-center pt-2 font-bold">
                                 {subjectCategory}
@@ -38,7 +38,7 @@ function SubjectCard({
                     isExam === 'true'
                         ? 'grid grid-rows-2'
                         : 'flex items-center justify-center'
-                } text-jet font-bold bg-card w-full h-full p-4 rounded-bl-3xl rounded-br-3xl`}
+                } text-jet font-bold bg-card w-full h-auto p-4 rounded-bl-3xl rounded-br-3xl`}
             >
                 <div className="flex items-center justify-center">
                     <span
@@ -119,7 +119,7 @@ function Subjects() {
     return (
         <>
             <div className="bg-snow h-screen overflow-x-hidden overflow-y-auto">
-                <div className="bg-snow sm:grid-cols-1 grid md:grid-cols-4 w-screen p-20 pb-6">
+                <div className="bg-snow grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-10 w-screen p-6 sm:p-14 md:p-14 pb-6">
                     <PopulateSubjects />
                 </div>
             </div>

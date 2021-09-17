@@ -31,11 +31,11 @@ function HomeworkCard({ classRef, difficulty, priority, duration }) {
     });
 
     return (
-        <div className="sm:flex-col md:grid md:grid-rows-2 sm:m-4 md:m-10 rounded-3xl shadow-xl">
+        <div className="grid grid-cols-1 grid-rows-none sm:m-4 md:m-4 rounded-3xl shadow-xl mt-10">
             <div className="w-full h-full flex items-center justify-center">
                 <div className="grid grid-cols-2  h-full w-full place-items-center">
-                    <div className="bg-snow items-center grid grid-rows-2 pl-4 pr-4 pt-2 pb-2 justify-center place-items-center rounded-tl-3xl">
-                        <h2 className="text-center sm:text-sm font-josefin font-bold md:text-lg text-black ">
+                    <div className="bg-snow w-full h-full text-center items-center grid grid-rows-2 pl-4 pr-4 pt-2 pb-2 justify-center place-items-center rounded-tl-3xl">
+                        <h2 className="text-center sm:text-base font-josefin font-bold md:text-lg text-black ">
                             {classRef} homework
                         </h2>
                         <p
@@ -54,7 +54,7 @@ function HomeworkCard({ classRef, difficulty, priority, duration }) {
                             Difficulty: {difficulty}
                         </p>
                     </div>
-                    <div className="bg-snow w-full items-center justify-center pl-4 pt-2 pr-4 pb-2 flex rounded-tr-3xl">
+                    <div className="bg-snow w-full h-full items-center justify-center text-center pl-4 pt-2 pr-4 pb-2 flex rounded-tr-3xl">
                         <div className="inline-block w-full">
                             <span
                                 className={`${
@@ -70,7 +70,7 @@ function HomeworkCard({ classRef, difficulty, priority, duration }) {
                                 } h-6 rounded-3xl flex ml-0`}
                                 style={{
                                     width: `${width}px`,
-                                    maxWidth: '168px',
+                                    maxWidth: '100%',
                                 }}
                             ></span>
                             <p
@@ -114,11 +114,11 @@ function HomeworkCard({ classRef, difficulty, priority, duration }) {
                 >
                     Priority
                 </h1>
-                <h1 className="flex pl-20 pr-20 pb-4 justify-between">
+                <div className="flex w-auto  justify-between pr-8 pl-8 pb-4">
                     <span
                         className={`${
                             priority === 'Low' ? 'bg-easy' : 'bg-cardBullet'
-                        } rounded-3xl w-10 h-10 text-base flex justify-center items-center text-josefin`}
+                        } rounded-3xl sm:mr-2 w-10 h-10 text-base flex justify-center items-center text-josefin`}
                     >
                         L
                     </span>
@@ -127,18 +127,18 @@ function HomeworkCard({ classRef, difficulty, priority, duration }) {
                             priority === 'Medium'
                                 ? 'bg-medium'
                                 : 'bg-cardBullet'
-                        } rounded-3xl w-10 h-10 text-base flex justify-center items-center text-josefin`}
+                        } rounded-3xl sm:mr-2 w-10 h-10 text-base flex justify-center items-center text-josefin`}
                     >
                         M
                     </span>
                     <span
                         className={`${
                             priority === 'High' ? 'bg-hard' : 'bg-cardBullet'
-                        } rounded-3xl w-10 h-10 text-base flex justify-center items-center text-josefin`}
+                        } rounded-3xl sm:mr-2 w-10 h-10 text-base flex justify-center items-center text-josefin`}
                     >
                         H
                     </span>
-                </h1>
+                </div>
             </div>
         </div>
     );
@@ -198,10 +198,10 @@ function Homeworks() {
         <>
             <div className="bg-snow h-screen overflow-x-hidden overflow-y-auto">
                 <Modal showModal={showModal} setShowModal={setShowModal} />
-                <div className="bg-snow sm:grid-cols-1  grid md:grid-cols-3 w-screen p-20 pb-6">
+                <div className="bg-snow grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:mt-10 w-screen p-6 sm:p-14 md:p-14 lg:p-18 xl:p-20 pb-6">
                     <PopulateGroups />
                     {/* Add button */}
-                    <div className="flex justify-center items-center sm:m-4 md:m-10 ">
+                    <div className="flex justify-center items-center ">
                         <Button
                             onClick={openModal}
                             className="border-2 hover:bg-black"

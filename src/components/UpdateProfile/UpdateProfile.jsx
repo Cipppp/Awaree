@@ -72,7 +72,7 @@ function UpdateProfile() {
     return (
         <div className="grid md:grid-cols-2 items-center">
             <div className="right-side bg-snow h-screen flex justify-center items-center col-span-2">
-                <div className="font-josefin p-20 text-2xl text-jet w-6/12">
+                <div className="font-josefin p-20 text-2xl text-jet w-full base:w-8/12 lg:w-6/12">
                     <h1 className="text-2xl font-josefin font-bold flex justify-center pt-10">
                         Update Profile
                     </h1>
