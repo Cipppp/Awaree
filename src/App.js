@@ -20,6 +20,7 @@ import { AuthProvider } from './components/contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import { getMessaging, getToken } from 'firebase/messaging';
 import { ToastContainer, toast } from 'react-toastify';
+import ScrollToTop from './components/ScrollToTop';
 
 const contextClass = {
     success: 'bg-green-600 pt-4 pb-4',
@@ -36,6 +37,7 @@ function App() {
     return (
         <Router>
             <AuthProvider>
+                <ScrollToTop />
                 <Navbar />
                 <Switch>
                     <Route path="/" exact component={Home} />
