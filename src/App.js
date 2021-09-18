@@ -32,40 +32,59 @@ const contextClass = {
 };
 function App() {
     const [loading, setLoading] = useState(true);
-    const [click, setClick] = useState(0);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 700);
+    }, []);
 
     return (
         <Router>
-            <AuthProvider>
-                <ScrollToTop />
-                <Navbar />
-                <Switch>
-                    <Route path="/" exact component={Home} />
-                    <PrivateRoute path="/settings" exact component={Settings} />
-                    <PrivateRoute
-                        path="/homeworks"
-                        exact
-                        component={Homeworks}
-                    />
-                    <PrivateRoute path="/subjects" exact component={Subjects} />
-                    <Route
-                        path="/forgot-password"
-                        exact
-                        component={ForgotPassword}
-                    />
-                    <Route
-                        path="/update-profile"
-                        exact
-                        component={UpdateProfile}
-                    />
-                    <Route path="/register" exact component={Register} />
-                    {/* User can't access this pace if they are logged in */}
-                    <Route path="/login" exact component={Login} />
-                    <PrivateRoute path="/status" exact component={Status} />
-                    <PrivateRoute path="/intro" exact component={Intro} />
-                    <Route path="*" component={PageNotFound} />
-                </Switch>
-            </AuthProvider>
+            {loading ? (
+                <div className="flex items-center justify-center">
+                    <ProgressBar done={100} className="shadow-md" />
+                </div>
+            ) : (
+                <AuthProvider>
+                    <ScrollToTop />
+                    <Navbar />
+                    <Switch>
+                        <Route path="/" exact component={Home} />
+                        <PrivateRoute
+                            path="/settings"
+                            exact
+                            component={Settings}
+                        />
+                        <PrivateRoute
+                            path="/homeworks"
+                            exact
+                            component={Homeworks}
+                        />
+                        <PrivateRoute
+                            path="/subjects"
+                            exact
+                            component={Subjects}
+                        />
+                        <Route
+                            path="/forgot-password"
+                            exact
+                            component={ForgotPassword}
+                        />
+                        <Route
+                            path="/update-profile"
+                            exact
+                            component={UpdateProfile}
+                        />
+                        <Route path="/register" exact component={Register} />
+                        {/* User can't access this pace if they are logged in */}
+                        <Route path="/login" exact component={Login} />
+                        <PrivateRoute path="/status" exact component={Status} />
+                        <PrivateRoute path="/intro" exact component={Intro} />
+                        <Route path="*" component={PageNotFound} />
+                    </Switch>
+                </AuthProvider>
+            )}
             <ToastContainer
                 style={{ fontFamily: 'Josefin Sans' }}
                 limit={1}
