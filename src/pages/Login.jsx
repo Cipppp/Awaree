@@ -30,9 +30,85 @@ function Login() {
         setLoading(false);
     }
 
-    const check = () => {
+    async function handleGoogleLogin() {
+        GoogleLogin();
         var duration = '';
+        var username = '';
+        if (currentUser) {
+            try {
+                const db = getDatabase();
+                const durationRef = ref(db, 'Users/' + currentUser.uid);
+                await onValue(durationRef, (snapshot) => {
+                    duration = snapshot.val().duration;
+                })
+                    .then({
+                        //
+                    })
+                    .catch({
+                        //;
+                    });
+            } catch {
+                if (currentUser) {
+                    // Check if user already has a name
+                    try {
+                        const db = getDatabase();
+                        const usernameRef = ref(db, 'Users/' + currentUser.uid);
+                        await onValue(usernameRef, (snapshot) => {
+                            try {
+                                username = snapshot.val().username;
+                            } catch {
+                                history.push('/login');
+                            }
+                        });
+                    } catch {
+                        writeUserData({ username: '', duration });
+                    }
+                }
+            }
+        }
+    }
+
+    async function handleGithubLogin() {
+        GithubLogin();
+        var duration = '';
+        var username = '';
+        if (currentUser) {
+            try {
+                const db = getDatabase();
+                const durationRef = ref(db, 'Users/' + currentUser.uid);
+                await onValue(durationRef, (snapshot) => {
+                    duration = snapshot.val().duration;
+                })
+                    .then({
+                        //
+                    })
+                    .catch({
+                        //;
+                    });
+            } catch {
+                if (currentUser) {
+                    // Check if user already has a name
+                    try {
+                        const db = getDatabase();
+                        const usernameRef = ref(db, 'Users/' + currentUser.uid);
+                        await onValue(usernameRef, (snapshot) => {
+                            try {
+                                username = snapshot.val().username;
+                            } catch {
+                                history.push('/login');
+                            }
+                        });
+                    } catch {
+                        writeUserData({ username: '', duration });
+                    }
+                }
+            }
+        }
+    }
+
+    const check = () => {
         try {
+            var duration = 0;
             const db = getDatabase();
             const durationRef = ref(db, 'Users/' + currentUser.uid);
             onValue(durationRef, (snapshot) => {
@@ -123,7 +199,7 @@ function Login() {
                             </form>
                             <button
                                 disabled={loading}
-                                onClick={GithubLogin}
+                                onClick={handleGithubLogin}
                                 className="btn-auth-with hover:bg-jet hover:text-link focus:outline-none "
                             >
                                 <GithubImg className="w-8 mr-4 text-sm sm:text-base md:text-lg xl:text-xl" />
@@ -131,7 +207,7 @@ function Login() {
                             </button>{' '}
                             <button
                                 disabled={loading}
-                                onClick={GoogleLogin}
+                                onClick={handleGoogleLogin}
                                 className="btn-auth-with hover:bg-jet hover:text-link focus:outline-none "
                             >
                                 <GoogleImg className="w-8 mr-4 pt-2 mb-2 text-sm sm:text-base md:text-lg xl:text-xl" />

@@ -42,7 +42,7 @@ function Navbar() {
 
     useEffect(() => {
         check();
-    }, [check]);
+    }, []);
 
     return (
         <>

@@ -28,10 +28,17 @@ function HomeworkCard({ classRef, difficulty, priority, duration }) {
 
     useEffect(() => {
         checkDifficulty();
-    });
+    }, []);
 
     return (
         <div className="grid grid-cols-1 grid-rows-none sm:m-4 md:m-4 rounded-3xl shadow-xl mt-10">
+            {console.log(
+                'Homeworks: ' + 'Duration: ',
+                duration,
+                ' Math.round(duration / 60): ',
+                Math.round(duration / 60)
+            )}
+
             <div className="w-full h-full flex items-center justify-center">
                 <div className="grid grid-cols-2  h-full w-full place-items-center">
                     <div className="bg-snow w-full h-full text-center items-center grid grid-rows-2 pl-4 pr-4 pt-2 pb-2 justify-center place-items-center rounded-tl-3xl">
@@ -150,7 +157,7 @@ function PopulateGroups() {
 
     useEffect(() => {
         loadGroups();
-    });
+    }, []);
 
     function loadGroups() {
         const db = getDatabase();

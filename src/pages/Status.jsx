@@ -8,7 +8,7 @@ function Status() {
     const { currentUser } = useAuth();
     const [duration, setDuration] = useState();
 
-    useEffect(() => {
+    async function check() {
         if (!currentUser) {
             Redirect('/login');
         } else {
@@ -19,11 +19,21 @@ function Status() {
                 setDuration(data);
             });
         }
-    });
+    }
+
+    useEffect(() => {
+        check();
+    }, []);
 
     return (
         <div className="overflow-hidden">
             {/* First slide */}
+            {console.log(
+                'Status: ' + 'Duration: ',
+                duration,
+                ' Math.round(duration / 60): ',
+                Math.round(duration / 60)
+            )}
             <div className="bg-snow h-screen w-screen flex justify-center items-center">
                 <div className="w-9/12">
                     <BarChart
