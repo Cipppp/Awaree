@@ -92,7 +92,7 @@ function Navbar() {
                                 })}
                                 <li className="nav-text">
                                     <Link
-                                        to="/"
+                                        to="/Awaree"
                                         onClick={logout}
                                         className="flex items-center justify-center text-white"
                                     >
