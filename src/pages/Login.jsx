@@ -210,7 +210,7 @@ function Login() {
                                 onClick={handleGoogleLogin}
                                 className="btn-auth-with hover:bg-jet hover:text-link focus:outline-none "
                             >
-                                <GoogleImg className="w-8 mr-4 pt-2 mb-2 text-sm sm:text-base md:text-lg xl:text-xl" />
+                                <GoogleImg className="w-8 mr-4 pt-2 mb-2 text-sm sm:text-base md:text-lg xl:text-xl p-2" />
                                 Continue with Google
                             </button>
                         </div>
