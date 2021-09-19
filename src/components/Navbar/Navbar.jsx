@@ -108,7 +108,7 @@ function Navbar() {
                 ) : (
                     <div className="navbar flex justify-between pl-10 pr-10 shadow-xs">
                         <Link
-                            to="/"
+                            to="/Awaree"
                             className="text-white font-josefin text-3xl"
                         >
                             Awaree.

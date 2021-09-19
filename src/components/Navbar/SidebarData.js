@@ -8,7 +8,7 @@ import { FiSettings } from 'react-icons/fi';
 export const SidebarData = [
     {
         title: 'Home',
-        path: '/',
+        path: '/Awaree',
         icon: <AiFillHome />,
         cName: 'nav-text',
     },
