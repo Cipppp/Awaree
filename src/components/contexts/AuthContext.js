@@ -10,8 +10,6 @@ import {
     push,
     query,
     orderByChild,
-    child,
-    get,
 } from 'firebase/database';
 import { useHistory } from 'react-router';
 import {
@@ -21,8 +19,6 @@ import {
     GithubAuthProvider,
     GoogleAuthProvider,
 } from 'firebase/auth';
-import { v4 as uuidv4 } from 'uuid';
-
 const AuthContext = React.createContext();
 
 export function useAuth() {
@@ -34,24 +30,24 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
     const [username, setUsername] = useState('');
     const history = useHistory();
-
-    const homeworkId = uuidv4();
     const [homeworkValue, setHomeworkValue] = useState([]);
-    const [message, setMessage] = useState('');
 
     //! Connect to realtime database
-    const db = getDatabase();
+    // const db = getDatabase();
 
     //! Authentication and user options
     function signup(email, password) {
         return firebaseAuth
             .auth()
             .createUserWithEmailAndPassword(email, password)
-            .then((userCredential) => {});
+            .catch((err) => {});
     }
 
     function login(email, password) {
-        return firebaseAuth.auth().signInWithEmailAndPassword(email, password);
+        return firebaseAuth
+            .auth()
+            .signInWithEmailAndPassword(email, password)
+            .catch((err) => {});
     }
 
     function logout() {
@@ -66,9 +62,7 @@ export function AuthProvider({ children }) {
         return currentUser
             .updateEmail(email)
             .then(() => {})
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch((error) => {});
     }
 
     function updatePassword(password) {
@@ -80,11 +74,8 @@ export function AuthProvider({ children }) {
         const user = auth.currentUser;
 
         deleteUser(user)
-            .then(() => {
-                console.log('User deleted.');
-            })
+            .then(() => {})
             .catch((error) => {
-                console.log('There was an error.', error);
                 // An error ocurred
                 // ...
             });
@@ -97,9 +88,7 @@ export function AuthProvider({ children }) {
             .then((result) => {
                 history.push('/status');
             })
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch((error) => {});
     }
 
     function GoogleLogin() {
@@ -110,9 +99,7 @@ export function AuthProvider({ children }) {
             .then((result) => {
                 history.push('/status');
             })
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch((error) => {});
     }
 
     //! Realtime database
@@ -206,9 +193,6 @@ export function AuthProvider({ children }) {
         resetPassword,
         updateEmail,
         updatePassword,
-        // getAnswers,
-        // addAnswer,
-        // editAnswer,
         writeAnswerData,
         updateAnswerData,
         writeUserData,

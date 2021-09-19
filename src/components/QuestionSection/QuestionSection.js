@@ -1,28 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import scrollTo from 'gatsby-plugin-smoothscroll';
 import { useAuth } from '../contexts/AuthContext';
 import { useHistory } from 'react-router-dom';
 import 'firebase/firestore';
-import { getDatabase, set, ref, update } from 'firebase/database';
-import { v4 as uuidv4 } from 'uuid';
-
-// const AnswerComponent = () => {
-//     <select value={classRef} onChange={(e) => setClassRef(e.target.value)}>
-//         <option value="Mathematics">Mathematics</option>
-//         <option value="Physics">Physics</option>
-//         <option value="English">English</option>
-//         <option value="C">C</option>
-//     </select>;
-// };
 
 const QuestionSection = ({ rightSection, text, id, done }) => {
     const [profile, setProfile] = useState('');
     const [series, setSeries] = useState('');
     const [group, setGroup] = useState('');
     const [activities, setActivities] = useState('');
-    const { currentUser, writeAnswerData, updateAnswerData } = useAuth();
+    const { writeAnswerData, updateAnswerData } = useAuth();
     const history = useHistory();
-    const userId = currentUser.uid;
 
     const keyPressed = ({ key }) => {
         // Capture answer on Enter key
@@ -56,8 +44,6 @@ const QuestionSection = ({ rightSection, text, id, done }) => {
     };
 
     const handleOnChange = (e) => {
-        console.log('Value = ' + id);
-
         switch (id) {
             case 1:
                 setProfile(e.target.value);

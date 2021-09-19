@@ -2,12 +2,10 @@ import scrollTo from 'gatsby-plugin-smoothscroll';
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { ReactComponent as HomeImg } from '../../assets/reading.svg';
-import { ReactComponent as FastImg } from '../../assets/fast.svg';
 import arrowImg from '../../assets/arrow.png';
 import fastImg from '../../assets/fast.png';
 import prefImg from '../../assets/preferences.png';
 import content from '../../content';
-import './Home.css';
 
 function Home() {
     const handleOnClick = () => {

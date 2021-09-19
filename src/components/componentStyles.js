@@ -16,6 +16,7 @@ export const ModalWrapper = styled.div.attrs({
         'shadow-md bg-snow text-jet flex justify-center items-center md:grid md:grid-cols-2 relative z-10 rounded-md',
 })`
     width: 800px;
+    /* width: clamp(50%, 800px, 90%); */
     height: 500px;
 `;
 

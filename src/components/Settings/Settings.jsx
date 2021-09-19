@@ -47,6 +47,11 @@ function Settings() {
                     >
                         Log out
                     </button>
+                    {error && (
+                        <p className="text-red-700 text-sm sm:text-base md:text-lg xl:text-xl flex justify-center mt-2 font-josefin">
+                            {error}
+                        </p>
+                    )}
                 </div>
             </div>
         </>

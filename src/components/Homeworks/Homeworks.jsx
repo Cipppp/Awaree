@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getDatabase, ref, set, push, onValue } from 'firebase/database';
+import { getDatabase, ref, onValue } from 'firebase/database';
 import { useAuth } from '../contexts/AuthContext';
 import { Modal } from '../index';
 import { Button } from '../componentStyles';
@@ -150,7 +150,7 @@ function PopulateGroups() {
 
     useEffect(() => {
         loadGroups();
-    }, []);
+    });
 
     function loadGroups() {
         const db = getDatabase();
@@ -176,22 +176,10 @@ function PopulateGroups() {
 }
 
 function Homeworks() {
-    const [value, setValue] = useState(100);
     const [showModal, setShowModal] = useState(false);
-    const [toggle, setToggle] = useState(false);
-    const { currentUser, homeworkValue } = useAuth();
 
     const openModal = () => {
         setShowModal((state) => !state);
-    };
-
-    const handleOnChange = (e) => {
-        setValue(e.target.value);
-        setToggle(true);
-    };
-
-    const handleOnBlur = (e) => {
-        setToggle(false);
     };
 
     return (

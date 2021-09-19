@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
@@ -61,7 +61,6 @@ function UpdateProfile() {
                 }
             })
             .catch((error) => {
-                console.log(error);
                 setError('Failed to update account');
             })
             .finally(() => {

@@ -7,5 +7,3 @@ function Reports() {
         </div>
     );
 }
-
-export default Reports;

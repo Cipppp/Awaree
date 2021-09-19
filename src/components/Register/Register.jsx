@@ -26,9 +26,6 @@ function Register() {
             setError('');
             setLoading(true);
             await signup(emailRef.current.value, passwordRef.current.value);
-            // sendEmailVerification(auth.currentUser).then(() => {
-            //     console.log('Email sent');
-            // });
             history.push('/intro');
         } catch {
             setError('Failed to create account.');

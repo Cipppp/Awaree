@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pie, defaults } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 
 // defaults.global.defaultFontFamily = 'Josefin Sans';
 

@@ -18,8 +18,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import { AuthProvider } from './components/contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
-import { getMessaging, getToken } from 'firebase/messaging';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import ScrollToTop from './components/ScrollToTop';
 
 const contextClass = {

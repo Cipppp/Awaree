@@ -8,9 +8,7 @@ import {
     ModalContent,
     CloseModalButton,
 } from '../componentStyles';
-import { useAuth, currentUser } from '../contexts/AuthContext';
-import { getDatabase, ref, onValue } from 'firebase/database';
-import { getMessaging, getToken } from 'firebase/messaging';
+import { useAuth } from '../contexts/AuthContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -21,8 +19,7 @@ export default function Modal({ showModal, setShowModal }) {
     const [priority, setPriority] = useState('Medium');
     const [duration, setDuration] = useState(100);
     const [error, setError] = useState('');
-    const { writeHomeworkData, currentUser, displayUserData, updateUserData } =
-        useAuth();
+    const { writeHomeworkData, displayUserData, updateUserData } = useAuth();
     const [toggle, setToggle] = useState(false);
     const customId = 'b6d2a12c-088a-43f4-911b-bf82e7497854';
 
@@ -38,10 +35,6 @@ export default function Modal({ showModal, setShowModal }) {
             draggable: true,
             theme: 'colored',
         });
-    };
-
-    const openModal = () => {
-        setShowModal((state) => !state);
     };
 
     const handleOnChange = (e) => {
@@ -85,7 +78,6 @@ export default function Modal({ showModal, setShowModal }) {
             setShowModal(false);
             parseInt(duration);
             writeHomeworkData({
-                // userId: currentUser.uid,
                 classRef,
                 difficulty,
                 priority,

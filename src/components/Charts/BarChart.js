@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bar, defaults, Chart } from 'react-chartjs-2';
+import { Bar, defaults } from 'react-chartjs-2';
 
 // defaults.defaultFontFamily = 'Arial';
 defaults.font.family = 'Josefin Sans';
@@ -37,7 +37,6 @@ function BarChart({ sectionLabel, colors, dataset }) {
                 tooltips: {
                     callbacks: {
                         label: function (tooltipItem) {
-                            console.log(tooltipItem);
                             return tooltipItem.yLabel;
                         },
                     },

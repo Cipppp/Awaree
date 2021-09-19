@@ -19,7 +19,7 @@ function Status() {
                 setDuration(data);
             });
         }
-    }, []);
+    });
 
     return (
         <div className="overflow-hidden">

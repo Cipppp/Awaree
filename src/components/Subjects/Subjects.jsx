@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getDatabase, ref, set, push, onValue } from 'firebase/database';
-import { useAuth } from '../contexts/AuthContext';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
 function SubjectCard({
     coursesNumber,
@@ -82,7 +81,6 @@ function SubjectCard({
 }
 
 function PopulateSubjects() {
-    const { currentUser } = useAuth();
     const [detail, setDetail] = useState({});
 
     useEffect(() => {
