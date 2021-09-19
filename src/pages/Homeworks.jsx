@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue } from 'firebase/database';
-import { useAuth } from '../contexts/AuthContext';
-import { Modal } from '../index';
-import { Button } from '../componentStyles';
-import { ReactComponent as AddImg } from '../../assets/plus.svg';
+import { useAuth } from '../components/contexts/AuthContext';
+import { Modal } from '../components/index';
+import { Button } from '../components/componentStyles';
+import { ReactComponent as AddImg } from '../assets/plus.svg';
 
 function HomeworkCard({ classRef, difficulty, priority, duration }) {
     const minutes = duration - 60 * Math.floor(duration / 60);

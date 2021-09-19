@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { ReactComponent as PasswordImg } from '../../assets/password.svg';
+import { useAuth } from '../components/contexts/AuthContext';
+import { ReactComponent as PasswordImg } from '../assets/password.svg';
 import { Link } from 'react-router-dom';
 
 function ForgotPassword() {

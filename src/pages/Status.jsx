@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import BarChart from '../Charts/BarChart';
-import { useAuth } from '../contexts/AuthContext';
+import BarChart from '../components/Charts/BarChart';
+import { useAuth } from '../components/contexts/AuthContext';
 import { Redirect } from 'react-router-dom';
 import { getDatabase, ref, onValue } from 'firebase/database';
 

@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { ReactComponent as LoginImg } from '../../assets/login.svg';
-import { ReactComponent as GithubImg } from '../../assets/github.svg';
-import { ReactComponent as GoogleImg } from '../../assets/google.svg';
+import { useAuth } from '../components/contexts/AuthContext';
+import { ReactComponent as LoginImg } from '../assets/login.svg';
+import { ReactComponent as GithubImg } from '../assets/github.svg';
+import { ReactComponent as GoogleImg } from '../assets/google.svg';
 import { Link, useHistory } from 'react-router-dom';
 import { getDatabase, ref, onValue } from 'firebase/database';
 

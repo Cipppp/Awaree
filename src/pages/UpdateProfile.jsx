@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../components/contexts/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

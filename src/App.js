@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Navbar, ProgressBar } from './components';
 import {
     Home,
-    Navbar,
     Login,
     Register,
     Status,
@@ -9,11 +9,10 @@ import {
     ForgotPassword,
     UpdateProfile,
     Settings,
-    ProgressBar,
     PageNotFound,
     Homeworks,
     Subjects,
-} from './components';
+} from './pages';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import { AuthProvider } from './components/contexts/AuthContext';

@@ -1,15 +1,4 @@
 export { default as Navbar } from './Navbar/Navbar';
-export { default as Home } from './Home/Home';
-export { default as Login } from './Login/Login';
-export { default as Register } from './Register/Register';
-export { default as Status } from './Status/Status';
-export { default as Intro } from './Intro/Intro';
 export { default as QuestionSection } from './QuestionSection/QuestionSection';
-export { default as ForgotPassword } from './ForgotPassword/ForgotPassword';
-export { default as UpdateProfile } from './UpdateProfile/UpdateProfile';
-export { default as Settings } from './Settings/Settings';
 export { default as Modal } from './Modal/Modal';
 export { default as ProgressBar } from './ProgressBar/ProgressBar';
-export { default as PageNotFound } from './PageNotFound/PageNotFound';
-export { default as Subjects } from './Subjects/Subjects';
-export { default as Homeworks } from './Homeworks/Homeworks';

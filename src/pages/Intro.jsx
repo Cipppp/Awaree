@@ -1,6 +1,11 @@
 import React from 'react';
-import { question_1, question_2, question_3, question_4 } from '../Data';
-import { QuestionSection } from '../index.js';
+import {
+    question_1,
+    question_2,
+    question_3,
+    question_4,
+} from '../components/Data.js';
+import { QuestionSection } from '../components/index.js';
 
 function Intro() {
     return (

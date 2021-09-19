@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { ReactComponent as RegisterImg } from '../../assets/authentication.svg';
+import { useAuth } from '../components/contexts/AuthContext';
+import { ReactComponent as RegisterImg } from '../assets/authentication.svg';
 import { Link, useHistory } from 'react-router-dom';
 
 function Register() {
