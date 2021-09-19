@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Awaree/static/css/main.da10f3aa.chunk.css",
-    "main.js": "/Awaree/static/js/main.015ae02d.chunk.js",
-    "main.js.map": "/Awaree/static/js/main.015ae02d.chunk.js.map",
+    "main.js": "/Awaree/static/js/main.ca43204d.chunk.js",
+    "main.js.map": "/Awaree/static/js/main.ca43204d.chunk.js.map",
     "runtime-main.js": "/Awaree/static/js/runtime-main.4bb2a820.js",
     "runtime-main.js.map": "/Awaree/static/js/runtime-main.4bb2a820.js.map",
     "static/css/2.aff6dd0d.chunk.css": "/Awaree/static/css/2.aff6dd0d.chunk.css",
@@ -12,7 +12,7 @@
     "static/css/2.aff6dd0d.chunk.css.map": "/Awaree/static/css/2.aff6dd0d.chunk.css.map",
     "static/css/main.da10f3aa.chunk.css.map": "/Awaree/static/css/main.da10f3aa.chunk.css.map",
     "static/js/2.a45d6534.chunk.js.LICENSE.txt": "/Awaree/static/js/2.a45d6534.chunk.js.LICENSE.txt",
-    "static/js/main.015ae02d.chunk.js.LICENSE.txt": "/Awaree/static/js/main.015ae02d.chunk.js.LICENSE.txt",
+    "static/js/main.ca43204d.chunk.js.LICENSE.txt": "/Awaree/static/js/main.ca43204d.chunk.js.LICENSE.txt",
     "static/media/addFile.8cf5a81c.svg": "/Awaree/static/media/addFile.8cf5a81c.svg",
     "static/media/authentication.e9633564.svg": "/Awaree/static/media/authentication.e9633564.svg",
     "static/media/fast.47dc05b1.png": "/Awaree/static/media/fast.47dc05b1.png",
@@ -30,6 +30,6 @@
     "static/css/2.aff6dd0d.chunk.css",
     "static/js/2.a45d6534.chunk.js",
     "static/css/main.da10f3aa.chunk.css",
-    "static/js/main.015ae02d.chunk.js"
+    "static/js/main.ca43204d.chunk.js"
   ]
 }
