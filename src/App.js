@@ -48,7 +48,7 @@ function App() {
                     <ScrollToTop />
                     <Navbar />
                     <Switch>
-                        <Route path="/Awaree" exact component={Home} />
+                        <Route path="/Awaree" component={Home} />
                         <PrivateRoute
                             path="/settings"
                             exact

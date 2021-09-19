@@ -11,7 +11,7 @@ function PageNotFound() {
                         Ooops, something went wrong!
                     </h1>
                     <Link
-                        to="/status"
+                        to="/Awaree"
                         className="text-lg flex font-bold text-blue-700 underline justify-center items-center"
                     >
                         Take me back to the Homepage
